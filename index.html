@@ -1,251 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.5">
-    <title>Joel Cordon - Portfolio</title>
-    <style>
-        /* General Page Styling */
-        body {
-            font-family: monospace;
-            background-color: #E8E8E8;
-            color: #0f172a;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-            position: relative;
-            overflow-x: hidden;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.5">
+  <title>Joel Cordon - Portfolio</title>
+  <style>
+    /* Global Styles: Set font to Times New Roman */
+    body {
+      font-family: "Times New Roman", serif;
+      background-color: #E8E8E8;
+      color: #0f172a;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      overflow-x: hidden;
+    }
 
-        /* Background Python Code - FULL COVERAGE */
-        .background-text {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            font-size: 60px; /* Large font */
-            opacity: 1.0;
-            font-weight: bold;
-            color: #0f172a;
-            z-index: -1;
-            display: flex;
-            flex-wrap: wrap;
-            align-content: left;
-            justify-content: left;
-            pointer-events: none;
-        }
+    /* Background Python Code - FULL COVERAGE */
+    .background-text {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      font-size: 60px;
+      opacity: 1.0;
+      font-weight: bold;
+      color: #0f172a;
+      z-index: -1;
+      display: flex;
+      flex-wrap: wrap;
+      align-content: left;
+      justify-content: left;
+      pointer-events: none;
+    }
+    .background-text::before {
+      content: ">>> exploring.start() import AI def research(): return ideas >>> exploring.start() import AI def research(): return ideas >>> exploring.start() import AI def research(): return ideas >>> exploring.start() import AI def research(): return ideas ";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 300%;
+      height: 300%;
+      font-size: 30px;
+      opacity: 0.06;
+      white-space: pre-wrap;
+      line-height: 2;
+    }
 
-        /* Repeating Background Text */
-        .background-text::before {
-            content: ">>> exploring.start() import AI def research(): return ideas >>> exploring.start() import AI def research(): return ideas >>> exploring.start() import AI def research(): return ideas >>> exploring.start() import AI def research(): return ideas ";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 300%;
-            height: 300%;
-            font-size: 30px;
-            opacity: 0.06;
-            white-space: pre-wrap;
-            line-height: 2;
-        }
+    /* Header Styling */
+    .header {
+      font-size: 1.8rem;
+      font-weight: 900;
+      margin-bottom: 5px;
+      background: linear-gradient(to right, #0f172a, #1e293b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subheader {
+      font-size: 0.9rem;
+      color: #1e293b;
+      margin-bottom: 40px;
+    }
 
-        /* Header - Adjusted Size and Weight */
-        .header {
-            font-size: 1.8rem; /* Made smaller */
-            font-weight: 900; /* Thicker font */
-            margin-bottom: 5px;
-            background: linear-gradient(to right, #0f172a, #1e293b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+    /* Folder Layout */
+    .folder-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      margin-top: -10px;
+    }
 
-        .subheader {
-            font-size: 0.9rem; /* Reduced */
-            color: #1e293b;
-            margin-bottom: 40px;
-        }
+    /* Folder Styling – scaled down by a factor of 0.1 */
+    .folder {
+      position: relative;
+      width: calc(180px * 0.1); /* 18px */
+      height: calc(110px * 0.1); /* 11px */
+      background-color: #e7c083;
+      border-radius: calc(10px * 0.1); /* 1px */
+      box-shadow: calc(3px * 0.1) calc(3px * 0.1) calc(8px * 0.1) rgba(0, 0, 0, 0.2); /* 0.3px 0.3px 0.8px */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: calc(0.9rem * 0.1); /* 0.09rem */
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #1e293b;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .folder::before {
+      content: attr(data-title);
+      position: absolute;
+      top: calc(-16px * 0.1); /* -1.6px */
+      left: calc(10px * 0.1); /* 1px */
+      width: 50%;
+      height: calc(18px * 0.1); /* 1.8px */
+      background-color: #d1a768;
+      border-radius: calc(5px * 0.1) calc(5px * 0.1) 0 0; /* 0.5px */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: calc(0.8rem * 0.1); /* 0.08rem */
+      font-weight: bold;
+      color: #000000;
+    }
+    .folder:hover {
+      transform: scale(1.05);
+      box-shadow: calc(5px * 0.1) calc(5px * 0.1) calc(15px * 0.1) rgba(0, 0, 0, 0.3); /* 0.5px 0.5px 1.5px */
+    }
 
-        /* Folder Layout - Vertical Stack */
-        .folder-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 30px;
-            margin-top: -10px;
-        }
+    /* Social Links – Button Colors Set to Black */
+    .social-links {
+      margin-top: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      max-width: 550px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .social-links a {
+      display: inline-block;
+      margin: 5px;
+      padding: 6px 10px;
+      background-color: #000000; /* now black */
+      color: #E8E8E8;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+      font-size: 12px;
+      width: 120px;
+      text-align: center;
+    }
+    .social-links a:hover {
+      background-color: #000000;
+    }
 
-        /* Folder Styling (Manila Color, Adjusted Shape) */
-        .folder {
-            position: relative;
-            width: 180px;
-            height: 110px;
-            background-color: #e7c083;
-            border-radius: 10px;
-            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            color: #1e293b;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+    /* Hire Me Section – Button Colors Set to Black */
+    .hire-me {
+      margin-top: 40px;
+    }
+    .hire-button {
+      display: inline-block;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #000000;
+      border: 2px solid #000000;
+      padding: 10px 18px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    .hire-button:hover {
+      background-color: #000000;
+      color: #E8E8E8;
+    }
 
-        /* Folder Tab (Title Bar) */
-        .folder::before {
-            content: attr(data-title);
-            position: absolute;
-            top: -16px;
-            left: 10px;
-            width: 50%;
-            height: 18px;
-            background-color: #d1a768;
-            border-radius: 5px 5px 0 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            font-weight: bold;
-            color: #000000;
-        }
+    /* CV Box – Button Colors Set to Black */
+    .cv-box {
+      margin-top: 15px;
+      padding: 10px;
+      background-color: #000000;
+      color: #E8E8E8;
+      display: inline-block;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+    .cv-box:hover {
+      background-color: #000000;
+    }
 
-        /* Hover Effect */
-        .folder:hover {
-            transform: scale(1.05);
-            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Social Links - Two Rows */
-        .social-links {
-            margin-top: 30px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 8px;
-            max-width: 550px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .social-links a {
-            display: inline-block;
-            margin: 5px;
-            padding: 6px 10px;
-            background-color: #1e293b;
-            color: #E8E8E8;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.3s ease;
-            font-size: 12px;
-            width: 120px;
-            text-align: center;
-        }
-
-        .social-links a:hover {
-            background-color: #0f172a;
-        }
-
-        /* Hire Me Section */
-        .hire-me {
-            margin-top: 40px;
-        }
-
-        .hire-button {
-            display: inline-block;
-            font-size: 1rem;
-            font-weight: bold;
-            color: #1e293b;
-            border: 2px solid #1e293b;
-            padding: 10px 18px;
-            border-radius: 8px;
-            text-decoration: none;
-            transition: background 0.3s ease, color 0.3s ease;
-        }
-
-        .hire-button:hover {
-            background-color: #1e293b;
-            color: #E8E8E8;
-        }
-
-        /* CV Box */
-        .cv-box {
-            margin-top: 15px;
-            padding: 10px;
-            background-color: #1e293b;
-            color: #E8E8E8;
-            display: inline-block;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: bold;
-            text-decoration: none;
-            transition: background 0.3s ease;
-        }
-
-        .cv-box:hover {
-            background-color: #0f172a;
-        }
-
-        /* Footer */
-        .footer {
-            margin-top: 30px;
-            font-size: 0.9rem;
-            color: #1e293b;
-        }
-    </style>
+    /* Footer */
+    .footer {
+      margin-top: 30px;
+      font-size: 0.9rem;
+      color: #1e293b;
+    }
+  </style>
 </head>
 <body>
+  <!-- Python Code Background -->
+  <div class="background-text"></div>
 
-    <!-- Python Code Background -->
-    <div class="background-text"></div>
+  <!-- Header -->
+  <div class="header">Joel Cordon</div>
+  <div class="subheader">Researcher • Programmer • Writer</div>
 
-    <!-- Header -->
-    <div class="header">Joel Cordon</div>
-    <div class="subheader">Researcher • Programmer • Writer</div>
+  <!-- Portfolio Sections (Vertical Folders) -->
+  <div class="folder-container">
+    <div class="folder" data-title="Projects"></div>
+    <div class="folder" data-title="Essays"></div>
+    <a href="reading.html" style="text-decoration: none;">
+      <div class="folder" data-title="Reading"></div>
+    </a>
+    <div class="folder" data-title="ML Primer" style="display: none;"></div>
+  </div>
 
-    <!-- Portfolio Sections (Vertical Folders) -->
-    <div class="folder-container">
-        <div class="folder" data-title="Projects"></div>
-        <div class="folder" data-title="Essays"></div>
-        <a href="reading.html" style="text-decoration: none;">
-            <div class="folder" data-title="Reading"></div>
-        </a>
-        <div class="folder" data-title="ML Primer" style="display: none;"></div>
-    </div>
+  <!-- Social Links -->
+  <div class="social-links">
+    <a href="#">GitHub</a>
+    <a href="#">Medium</a>
+    <a href="#">LinkedIn</a>
+    <a href="#">Instagram</a>
+    <a href="#">X (Twitter)</a>
+    <a href="#">WhatsApp</a>
+    <a href="#">Telegram</a>
+    <a href="#">YouTube</a>
+    <a href="#">ResearchGate</a>
+    <a href="#">Stack Overflow</a>
+  </div>
 
-    <!-- Social Links (Two Rows) -->
-    <div class="social-links">
-        <a href="#">GitHub</a>
-        <a href="#">Medium</a>
-        <a href="#">LinkedIn</a>
-        <a href="#">Instagram</a>
-        <a href="#">X (Twitter)</a>
-        <a href="#">WhatsApp</a>
-        <a href="#">Telegram</a>
-        <a href="#">YouTube</a>
-        <a href="#">ResearchGate</a>
-        <a href="#">Stack Overflow</a>
-    </div>
+  <!-- Hire Me Section -->
+  <div class="hire-me">
+    <a href="#" class="hire-button">Hire Me: Programming Projects | Writing Opportunities</a>
+  </div>
 
-    <!-- Hire Me Section -->
-    <div class="hire-me">
-        <a href="#" class="hire-button">Hire Me: Programming Projects | Writing Opportunities</a>
-    </div>
+  <!-- CV Box -->
+  <a href="#" class="cv-box">View My CV</a>
 
-    <!-- CV Box -->
-    <a href="#" class="cv-box">View My CV</a>
-
-    <!-- Footer -->
-    <div class="footer">
-        <p>Current Location: United States</p>
-        <p>Next: ...</p>
-    </div>
-
-
-
-
-
+  <!-- Footer -->
+  <div class="footer">
+    <p>Current Location: United States</p>
+    <p>Next: ...</p>
+  </div>
 </body>
 </html>
 
