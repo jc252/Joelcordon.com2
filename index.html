@@ -50,10 +50,10 @@
             line-height: 2;
         }
 
-        /* Header - Reduced Size */
+        /* Header - Adjusted Size and Weight */
         .header {
-            font-size: 2.0rem; /* Slightly smaller */
-            font-weight: semi bold;
+            font-size: 1.8rem; /* Made smaller */
+            font-weight: 900; /* Thicker font */
             margin-bottom: 5px;
             background: linear-gradient(to right, #0f172a, #1e293b);
             -webkit-background-clip: text;
@@ -208,8 +208,10 @@
     <div class="folder-container">
         <div class="folder" data-title="Projects"></div>
         <div class="folder" data-title="Essays"></div>
-        <div class="folder" data-title="Reading"></div>
-        <div class="folder" data-title="ML Primer"></div>
+        <a href="reading.html" style="text-decoration: none;">
+            <div class="folder" data-title="Reading"></div>
+        </a>
+        <div class="folder" data-title="ML Primer" style="display: none;"></div>
     </div>
 
     <!-- Social Links (Two Rows) -->
@@ -242,3 +244,4 @@
 
 </body>
 </html>
+
