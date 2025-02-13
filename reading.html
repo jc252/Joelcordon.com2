@@ -1,340 +1,130 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Reading Tracker - Black &amp; White</title>
-  <style>
-    /* Global Black & White Styles */
-    body {
-      font-family: serif;
-      background-color: #fff;
-      color: #000;
-      margin: 0;
-      padding: 20px;
-      max-width: 900px;
-      margin: auto;
-      line-height: 1.6;
-    }
-    a {
-      color: #000;
-      text-decoration: none;
-      border-bottom: 1px solid #000;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    header {
-      margin-bottom: 20px;
-      text-align: center;
-    }
-    header a.home-link {
-      font-size: 1.2em;
-      font-weight: bold;
-    }
-    h2, h3 {
-      text-align: center;
-      margin-top: 0;
-    }
-    /* Container Styles */
-    #reading-tracker-widget,
-    #timeline-container,
-    #canon-container {
-      background-color: #fff;
-      border: 1px solid #000;
-      border-radius: 4px;
-      padding: 20px;
-      margin-bottom: 30px;
-    }
-    /* Book Entry */
-    .book-entry p {
-      margin: 5px 0;
-    }
-    .book-entry p strong {
-      font-weight: bold;
-    }
-    /* Review Section (Read-Only) */
-    .review-section {
-      margin-top: 15px;
-    }
-    .review-section label {
-      display: block;
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
-    /* Instead of input fields, we simply display a static review message */
-    .review-static {
-      padding: 10px;
-      border: 1px solid #000;
-      border-radius: 4px;
-      background-color: #f8f8f8;
-      color: #000;
-      font-size: 1em;
-      min-height: 80px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    /* Timeline Styles */
-    #timeline {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .timeline-item {
-      margin-bottom: 20px;
-      position: relative;
-      padding-left: 40px;
-    }
-    .timeline-item:before {
-      content: '';
-      position: absolute;
-      left: 10px;
-      top: 5px;
-      width: 10px;
-      height: 10px;
-      background-color: #000;
-      border-radius: 50%;
-    }
-    .timeline-date {
-      font-size: 0.9em;
-      color: #555;
-      margin-bottom: 5px;
-    }
-    .timeline-content h4 {
-      margin: 0;
-      font-size: 1.1em;
-    }
-    .timeline-content p {
-      margin: 5px 0 0;
-      font-size: 0.95em;
-    }
-    /* Canon List Styles */
-    #canon-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      columns: 2;
-    }
-    #canon-list li {
-      margin: 4px 0;
-    }
-    #canon-list a {
-      font-weight: bold;
-      cursor: pointer;
-    }
-  </style>
-</head>
-<body>
-  <!-- Homepage Link Header -->
-  <header>
-    <a class="home-link" href="index.html">← Back to Homepage</a>
-  </header>
-
-  <!-- Reading Tracker Widget -->
-  <div id="reading-tracker-widget">
-    <h2>Reading Tracker</h2>
-    <section class="book-entry">
-      <h3>Currently Reading</h3>
-      <!-- Example preset with Hamlet -->
-      <p><strong>Title:</strong> <em>Hamlet</em></p>
-      <p><strong>Author:</strong> William Shakespeare</p>
-      <p><strong>Year:</strong> 1603</p>
-      <p><strong>Status:</strong> In Progress</p>
-      <div class="review-section">
-        <label>Your Review (read-only):</label>
-        <div class="review-static">
-          No reviews are allowed.
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- Timeline Visualization (Manual Updates Only) -->
-  <div id="timeline-container">
-    <h3>Reading Timeline</h3>
-    <ul id="timeline">
-      <!-- Timeline entries (if any) will appear here. You can update this manually in the code. -->
-    </ul>
-  </div>
-
-  <!-- The Canon List (1000 Canonical Works: First 100 Curated) -->
-  <div id="canon-container">
-    <h3>The Canon</h3>
-    <ul id="canon-list">
-      <!-- Canon list items will be generated dynamically -->
-    </ul>
-  </div>
-
-  <script>
-    // Helper: Format a date as "Mon DD, YYYY"
-    function formatDate(date) {
-      const options = { year: 'numeric', month: 'short', day: 'numeric' };
-      return date.toLocaleDateString(undefined, options);
-    }
-    
-    // Define curated works for the first 100 titles, divided equally among 6 categories.
-    const literature = [
-      "The Iliad – Homer",
-      "The Odyssey – Homer",
-      "The Aeneid – Virgil",
-      "Beowulf – Anonymous",
-      "The Divine Comedy – Dante Alighieri",
-      "The Canterbury Tales – Geoffrey Chaucer",
-      "Don Quixote – Miguel de Cervantes",
-      "Hamlet – William Shakespeare",
-      "King Lear – William Shakespeare",
-      "Macbeth – William Shakespeare",
-      "Othello – William Shakespeare",
-      "Romeo and Juliet – William Shakespeare",
-      "Moby Dick – Herman Melville",
-      "Great Expectations – Charles Dickens",
-      "A Tale of Two Cities – Charles Dickens",
-      "The Great Gatsby – F. Scott Fitzgerald",
-      "One Hundred Years of Solitude – Gabriel García Márquez"
-    ];
-    const philosophy = [
-      "The Republic – Plato",
-      "The Symposium – Plato",
-      "Nicomachean Ethics – Aristotle",
-      "Meditations – Marcus Aurelius",
-      "Enchiridion – Epictetus",
-      "Letters from a Stoic – Seneca",
-      "Confessions – Augustine",
-      "Summa Theologica – Thomas Aquinas",
-      "The Consolation of Philosophy – Boethius",
-      "Discourse on the Method – René Descartes",
-      "Meditations on First Philosophy – René Descartes",
-      "Critique of Pure Reason – Immanuel Kant",
-      "Critique of Practical Reason – Immanuel Kant",
-      "Phenomenology of Spirit – G.W.F. Hegel",
-      "The Enneads – Plotinus",
-      "On Duties – Cicero",
-      "Letters to Lucilius – Seneca"
-    ];
-    const economics = [
-      "The Wealth of Nations – Adam Smith",
-      "The Theory of Moral Sentiments – Adam Smith",
-      "An Essay on the Principle of Population – Thomas Malthus",
-      "On the Principles of Political Economy and Taxation – David Ricardo",
-      "On the Principles of Political Economy – John Stuart Mill",
-      "Economic Sophisms – Frédéric Bastiat",
-      "The Law – Frédéric Bastiat",
-      "Human Action – Ludwig von Mises",
-      "Socialism – Ludwig von Mises",
-      "Capitalism and Freedom – Milton Friedman",
-      "Free to Choose – Milton Friedman",
-      "Economics in One Lesson – Henry Hazlitt",
-      "The Road to Serfdom – Friedrich Hayek",
-      "The Fatal Conceit – Friedrich Hayek",
-      "The Constitution of Liberty – Friedrich Hayek",
-      "Principles of Economics – Alfred Marshall",
-      "Man, Economy, and State – Murray Rothbard"
-    ];
-    const politics = [
-      "The Prince – Niccolò Machiavelli",
-      "Discourses on Livy – Niccolò Machiavelli",
-      "Leviathan – Thomas Hobbes",
-      "Two Treatises of Government – John Locke",
-      "Reflections on the Revolution in France – Edmund Burke",
-      "The Federalist Papers – Hamilton, Madison, and Jay",
-      "The Spirit of the Laws – Montesquieu",
-      "On Liberty – John Stuart Mill",
-      "Democracy in America – Alexis de Tocqueville",
-      "On Government – John Adams",
-      "The Conservative Mind – Russell Kirk",
-      "Politics and Vision – Sheldon Wolin",
-      "The History of the Peloponnesian War – Thucydides",
-      "The Social Contract – Jean‑Jacques Rousseau",
-      "On the Law of War and Peace – Hugo Grotius",
-      "Two Concepts of Liberty – Isaiah Berlin",
-      "Cato's Letters – John Trenchard & Thomas Gordon"
-    ];
-    const christianity = [
-      "The Bible – King James Version",
-      "The City of God – Augustine",
-      "The Imitation of Christ – Thomas à Kempis",
-      "Institutes of the Christian Religion – John Calvin",
-      "Pilgrim's Progress – John Bunyan",
-      "Foxe's Book of Martyrs – John Foxe",
-      "The Rule of St. Benedict – Benedict of Nursia",
-      "The Ladder of Divine Ascent – John Climacus",
-      "The Spiritual Exercises – Ignatius of Loyola",
-      "Sermons of John Chrysostom – John Chrysostom",
-      "The Sayings of the Desert Fathers – Anonymous",
-      "The Bondage of the Will – Martin Luther",
-      "Theologia Germanica – Anonymous",
-      "Confessions of Saint Patrick – Saint Patrick",
-      "Lives of the Saints – Alban Butler",
-      "On the Incarnation – Athanasius"
-    ];
-    const ai = [
-      "Computing Machinery and Intelligence – A.M. Turing",
-      "Cybernetics – Norbert Wiener",
-      "Perceptrons – Marvin Minsky & Seymour Papert",
-      "Artificial Intelligence: A Modern Approach – Stuart Russell & Peter Norvig",
-      "The Society of Mind – Marvin Minsky",
-      "Gödel, Escher, Bach – Douglas Hofstadter",
-      "Mind Children – Hans Moravec",
-      "The Emotion Machine – Marvin Minsky",
-      "Superintelligence – Nick Bostrom",
-      "Life 3.0 – Max Tegmark",
-      "The Singularity is Near – Ray Kurzweil",
-      "The Age of Em – Robin Hanson",
-      "Architects of Intelligence – Martin Ford",
-      "Deep Learning – Ian Goodfellow, Yoshua Bengio, & Aaron Courville",
-      "Reinforcement Learning: An Introduction – Sutton & Barto",
-      "The Master Algorithm – Pedro Domingos"
-    ];
-    
-    // Concatenate the curated arrays (ensure the total is 100 titles)
-    const curatedWorks = literature.concat(philosophy, economics, politics, christianity, ai);
-    // Verify: literature (17) + philosophy (17) + economics (17) + politics (17) + christianity (16) + ai (16) = 100
-    
-    // Create final canon array of 1000 items.
-    const totalCanonItems = 1000;
-    const finalCanonWorks = curatedWorks.slice(); // first 100 are curated
-    for (let i = curatedWorks.length + 1; i <= totalCanonItems; i++) {
-      finalCanonWorks.push(`${i}. Placeholder Canonical Work – Author ${i}`);
-    }
-    
-    // Generate canon list items in the DOM from finalCanonWorks.
-    const canonListEl = document.getElementById("canon-list");
-    finalCanonWorks.forEach((title) => {
-      const li = document.createElement("li");
-      const a = document.createElement("a");
-      a.href = "#";
-      a.className = "canon-item";
-      const workTitle = title.split(" – ")[0];
-      a.setAttribute("data-book", workTitle);
-      a.textContent = title;
-      li.appendChild(a);
-      canonListEl.appendChild(li);
-    });
-    
-    // Timeline: (Review submission is now removed so that no reviews are allowed.)
-    // For demonstration, we provide a function to add timeline entries manually (this code is kept but not exposed).
-    // Clicking a canon item scrolls to its timeline entry if available.
-    document.addEventListener("click", function(e) {
-      if (e.target && e.target.matches(".canon-item")) {
-        e.preventDefault();
-        const book = e.target.getAttribute("data-book");
-        const timelineItems = document.querySelectorAll("#timeline .timeline-item");
-        let found = false;
-        timelineItems.forEach(function(timelineItem) {
-          if (timelineItem.getAttribute("data-book") === book) {
-            found = true;
-            timelineItem.scrollIntoView({ behavior: "smooth", block: "center" });
-            timelineItem.style.backgroundColor = "#ccc";
-            setTimeout(() => timelineItem.style.backgroundColor = "", 2000);
-          }
-        });
-        if (!found) {
-          alert("No timeline entry for " + book + " exists.");
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>My Reading Portfolio</title>
+    <style>
+      /* Base styling */
+      body {
+        font-family: "Georgia", serif;
+        background-color: #fafafa;
+        color: #333;
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+      }
+      header,
+      footer {
+        background-color: #fff;
+        text-align: center;
+        padding: 20px;
+        border-bottom: 1px solid #ddd;
+      }
+      header nav a {
+        margin: 0 10px;
+        text-decoration: none;
+        color: #333;
+      }
+      main {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 0 20px;
+      }
+      h1, h2 {
+        margin-bottom: 10px;
+      }
+      section {
+        margin-bottom: 40px;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+      li {
+        margin-bottom: 10px;
+      }
+      li a {
+        text-decoration: none;
+        color: #0066cc;
+      }
+      li a:hover {
+        text-decoration: underline;
+      }
+      footer p {
+        font-size: 0.9em;
+        color: #777;
+      }
+      /* Responsive adjustments */
+      @media (max-width: 600px) {
+        main {
+          padding: 0 10px;
+          margin: 20px auto;
         }
       }
-    });
-  </script>
-</body>
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>My Reading Portfolio</h1>
+      <nav>
+        <a href="/index.html">Home</a>
+        <a href="/portfolio.html">Portfolio</a>
+        <a href="/reading/index.html">Reading</a>
+      </nav>
+    </header>
+    <main>
+      <!-- Philosophical Works -->
+      <section id="philosophy">
+        <h2>Philosophical Works</h2>
+        <ul>
+          <li><a href="plato-republic.html" target="_blank">Plato's Republic</a></li>
+          <li><a href="aristotle-nicomachean-ethics.html" target="_blank">Aristotle's Nicomachean Ethics</a></li>
+          <li><a href="descartes-meditations.html" target="_blank">Descartes' Meditations on First Philosophy</a></li>
+          <li><a href="kant-critique-reason.html" target="_blank">Kant's Critique of Pure Reason</a></li>
+        </ul>
+      </section>
+
+      <!-- Economic Works -->
+      <section id="economics">
+        <h2>Economic Works</h2>
+        <ul>
+          <li><a href="adam-smith-wealth.html" target="_blank">Adam Smith's The Wealth of Nations</a></li>
+          <li><a href="marx-capital.html" target="_blank">Karl Marx's Capital</a></li>
+          <li><a href="menger-principles.html" target="_blank">Carl Menger's Principles of Economics</a></li>
+          <li><a href="keynes-general-theory.html" target="_blank">Keynes' The General Theory of Employment, Interest, and Money</a></li>
+        </ul>
+      </section>
+
+      <!-- Political Works -->
+      <section id="politics">
+        <h2>Political Works</h2>
+        <ul>
+          <li><a href="machiavelli-prince.html" target="_blank">Machiavelli's The Prince</a></li>
+          <li><a href="locke-two-treatises.html" target="_blank">John Locke's Two Treatises of Government</a></li>
+          <li><a href="roberts-constitution.html" target="_blank">The U.S. Constitution & Federalist Papers</a></li>
+          <li><a href="rawls-justice.html" target="_blank">John Rawls' A Theory of Justice</a></li>
+        </ul>
+      </section>
+
+      <!-- The Classics -->
+      <section id="classics">
+        <h2>The Classics</h2>
+        <ul>
+          <li><a href="homer-iliad.html" target="_blank">Homer's Iliad</a></li>
+          <li><a href="homer-odyssey.html" target="_blank">Homer's Odyssey</a></li>
+          <li><a href="virgil-aeneid.html" target="_blank">Virgil's Aeneid</a></li>
+          <li><a href="dante-divine-comedy.html" target="_blank">Dante's Divine Comedy</a></li>
+          <li><a href="shakespeare-works.html" target="_blank">Works of Shakespeare</a></li>
+        </ul>
+      </section>
+    </main>
+    <footer>
+      <p>&copy; 2025 Your Name. All rights reserved.</p>
+    </footer>
+  </body>
 </html>
+
