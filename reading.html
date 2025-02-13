@@ -168,6 +168,104 @@
       <li><a href="#" class="canon-item" data-book="The Odyssey">The Odyssey – Homer</a></li>
       <li><a href="#" class="canon-item" data-book="Oresteia">Oresteia – Aeschylus</a></li>
       <li><a href="#" class="canon-item" data-book="Oedipus Rex">Oedipus Rex – Sophocles</a></li>
-      <li><a href="#" class="canon-item"
+      <li><a href="#" class="canon-item" data-book="Medea">Medea – Euripides</a></li>
+      <li><a href="#" class="canon-item" data-book="The Republic">The Republic – Plato</a></li>
+      <li><a href="#" class="canon-item" data-book="Poetics">Poetics – Aristotle</a></li>
+      <li><a href="#" class="canon-item" data-book="The Aeneid">The Aeneid – Virgil</a></li>
+      <li><a href="#" class="canon-item" data-book="Metamorphoses">Metamorphoses – Ovid</a></li>
+      <li><a href="#" class="canon-item" data-book="The Divine Comedy">The Divine Comedy – Dante Alighieri</a></li>
+      <li><a href="#" class="canon-item" data-book="The Canterbury Tales">The Canterbury Tales – Geoffrey Chaucer</a></li>
+      <li><a href="#" class="canon-item" data-book="Don Quixote">Don Quixote – Miguel de Cervantes</a></li>
+      <li><a href="#" class="canon-item" data-book="Hamlet">Hamlet – William Shakespeare</a></li>
+      <li><a href="#" class="canon-item" data-book="Othello">Othello – William Shakespeare</a></li>
+      <li><a href="#" class="canon-item" data-book="King Lear">King Lear – William Shakespeare</a></li>
+      <li><a href="#" class="canon-item" data-book="Macbeth">Macbeth – William Shakespeare</a></li>
+      <li><a href="#" class="canon-item" data-book="Paradise Lost">Paradise Lost – John Milton</a></li>
+      <li><a href="#" class="canon-item" data-book="Candide">Candide – Voltaire</a></li>
+      <li><a href="#" class="canon-item" data-book="Faust">Faust – Johann Wolfgang von Goethe</a></li>
+      <li><a href="#" class="canon-item" data-book="Pride and Prejudice">Pride and Prejudice – Jane Austen</a></li>
+      <li><a href="#" class="canon-item" data-book="Moby Dick">Moby Dick – Herman Melville</a></li>
+      <li><a href="#" class="canon-item" data-book="Madame Bovary">Madame Bovary – Gustave Flaubert</a></li>
+      <li><a href="#" class="canon-item" data-book="War and Peace">War and Peace – Leo Tolstoy</a></li>
+      <li><a href="#" class="canon-item" data-book="Crime and Punishment">Crime and Punishment – Fyodor Dostoevsky</a></li>
+      <li><a href="#" class="canon-item" data-book="The Brothers Karamazov">The Brothers Karamazov – Fyodor Dostoevsky</a></li>
+      <li><a href="#" class="canon-item" data-book="Ulysses">Ulysses – James Joyce</a></li>
+      <li><a href="#" class="canon-item" data-book="In Search of Lost Time">In Search of Lost Time – Marcel Proust</a></li>
+      <li><a href="#" class="canon-item" data-book="The Trial">The Trial – Franz Kafka</a></li>
+      <li><a href="#" class="canon-item" data-book="Waiting for Godot">Waiting for Godot – Samuel Beckett</a></li>
+      <li><a href="#" class="canon-item" data-book="The Waste Land">The Waste Land – T. S. Eliot</a></li>
+    </ul>
+  </div>
 
+  <script>
+    // Helper: Format a date as "Mon DD, YYYY"
+    function formatDate(date) {
+      const options = { year: 'numeric', month: 'short', day: 'numeric' };
+      return date.toLocaleDateString(undefined, options);
+    }
 
+    // Handle review submission and timeline update
+    document.getElementById("submit-review").addEventListener("click", function() {
+      const reviewText = document.getElementById("review-text").value.trim();
+      const reviewOutput = document.getElementById("review-output");
+
+      if (!reviewText) {
+        reviewOutput.innerHTML = "<p>Please enter your review before submitting.</p>";
+        return;
+      }
+
+      // Display the review in the widget
+      reviewOutput.innerHTML = "<h4>Your Review:</h4><p>" + reviewText + "</p>";
+
+      // Prepare the timeline entry using the current date
+      const currentDate = new Date();
+      const formattedDate = formatDate(currentDate);
+      
+      // For demonstration, assume the current book is "Hamlet"
+      const bookTitle = "Hamlet";
+
+      const timelineItem = document.createElement("li");
+      timelineItem.className = "timeline-item";
+      // Attach the book title as a data attribute for linking
+      timelineItem.setAttribute("data-book", bookTitle);
+      timelineItem.innerHTML = `
+        <div class="timeline-date">${formattedDate}</div>
+        <div class="timeline-content">
+          <h4>${bookTitle} (1603)</h4>
+          <p><strong>Review:</strong> ${reviewText}</p>
+        </div>
+      `;
+      
+      // Append the new entry to the timeline
+      document.getElementById("timeline").appendChild(timelineItem);
+      
+      // Clear the review textarea for future entries
+      document.getElementById("review-text").value = "";
+    });
+
+    // Enable clicking on canon items to jump to the corresponding review in the timeline
+    document.querySelectorAll(".canon-item").forEach(function(item) {
+      item.addEventListener("click", function(e) {
+        e.preventDefault();
+        const book = this.getAttribute("data-book");
+        const timelineItems = document.querySelectorAll("#timeline .timeline-item");
+        let found = false;
+        timelineItems.forEach(function(timelineItem) {
+          if (timelineItem.getAttribute("data-book") === book) {
+            found = true;
+            timelineItem.scrollIntoView({ behavior: "smooth", block: "center" });
+            // Briefly highlight the timeline item
+            timelineItem.style.backgroundColor = "#ffffcc";
+            setTimeout(function() {
+              timelineItem.style.backgroundColor = "";
+            }, 2000);
+          }
+        });
+        if (!found) {
+          alert("No review for " + book + " yet.");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
