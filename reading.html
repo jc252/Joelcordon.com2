@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Reading Tracker - Black &amp; White</title>
   <style>
-    /* Global Styles (Black & White Only) */
+    /* Global Black & White Styles */
     body {
       font-family: serif;
       background-color: #fff;
@@ -13,8 +13,7 @@
       margin: 0;
       padding: 20px;
       max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
+      margin: auto;
       line-height: 1.6;
     }
     a {
@@ -40,7 +39,8 @@
     /* Container Styles */
     #reading-tracker-widget,
     #timeline-container,
-    #canon-container {
+    #canon-container,
+    #bible-tracker-container {
       background-color: #fff;
       border: 1px solid #000;
       border-radius: 4px;
@@ -141,6 +141,46 @@
       font-weight: bold;
       cursor: pointer;
     }
+    /* Bible Tracker Styles */
+    #bible-tracker-container form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    #bible-tracker-container label {
+      font-weight: bold;
+    }
+    #bible-tracker-container input[type="date"],
+    #bible-tracker-container input[type="text"] {
+      padding: 8px;
+      border: 1px solid #000;
+      border-radius: 4px;
+      font-size: 1em;
+      background-color: #fff;
+      color: #000;
+    }
+    #submit-bible-progress {
+      align-self: center;
+      padding: 10px 15px;
+      background-color: #000;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    #submit-bible-progress:hover {
+      background-color: #333;
+    }
+    #bible-progress-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+    }
+    #bible-progress-list li {
+      margin-bottom: 10px;
+      border-bottom: 1px solid #000;
+      padding-bottom: 5px;
+    }
   </style>
 </head>
 <body>
@@ -154,7 +194,7 @@
     <h2>Reading Tracker</h2>
     <section class="book-entry">
       <h3>Currently Reading</h3>
-      <!-- For demonstration, preset with Hamlet -->
+      <!-- Example preset with Hamlet -->
       <p><strong>Title:</strong> <em>Hamlet</em></p>
       <p><strong>Author:</strong> William Shakespeare</p>
       <p><strong>Year:</strong> 1603</p>
@@ -176,57 +216,185 @@
     </ul>
   </div>
 
-  <!-- The Canon List (1000 Canonical Works) -->
+  <!-- The Canon List (100 Canonical Works) -->
   <div id="canon-container">
     <h3>The Canon</h3>
     <ul id="canon-list">
-      <!-- The list will be generated dynamically below -->
+      <!-- Canon list generated dynamically from a curated array (see below) -->
+    </ul>
+  </div>
+
+  <!-- Bible in a Year Tracker -->
+  <div id="bible-tracker-container">
+    <h3>Bible in a Year Tracker</h3>
+    <form id="bible-tracker-form">
+      <label for="bible-date">Date:</label>
+      <input type="date" id="bible-date" required />
+      <label for="bible-progress">Progress (Book and Chapter):</label>
+      <input type="text" id="bible-progress" placeholder="e.g., Genesis 1" required />
+      <button type="submit" id="submit-bible-progress">Add Progress</button>
+    </form>
+    <ul id="bible-progress-list">
+      <!-- Bible progress entries will appear here -->
     </ul>
   </div>
 
   <script>
-    // Helper: Format a date as "Mon DD, YYYY"
+    // Helper function: Format date as "Mon DD, YYYY"
     function formatDate(date) {
       const options = { year: 'numeric', month: 'short', day: 'numeric' };
       return date.toLocaleDateString(undefined, options);
     }
+    
+    // Curated array of 100 canonical works spanning literature, fiction, philosophy, politics, economics, and technology.
+    const canonicalWorks = [
+      // Fiction & Literature (20)
+      "The Iliad – Homer",
+      "The Odyssey – Homer",
+      "The Aeneid – Virgil",
+      "Beowulf – Anonymous",
+      "The Divine Comedy – Dante Alighieri",
+      "The Canterbury Tales – Geoffrey Chaucer",
+      "Don Quixote – Miguel de Cervantes",
+      "Hamlet – William Shakespeare",
+      "King Lear – William Shakespeare",
+      "Macbeth – William Shakespeare",
+      "Othello – William Shakespeare",
+      "Romeo and Juliet – William Shakespeare",
+      "Robinson Crusoe – Daniel Defoe",
+      "Gulliver’s Travels – Jonathan Swift",
+      "Great Expectations – Charles Dickens",
+      "A Tale of Two Cities – Charles Dickens",
+      "The Great Gatsby – F. Scott Fitzgerald",
+      "Moby Dick – Herman Melville",
+      "The Adventures of Huckleberry Finn – Mark Twain",
+      "One Hundred Years of Solitude – Gabriel García Márquez",
 
-    // Generate 1000 placeholder canon list items
-    function generateCanonList() {
-      const canonList = document.getElementById("canon-list");
-      for (let i = 1; i <= 1000; i++) {
-        const li = document.createElement("li");
-        const a = document.createElement("a");
-        a.href = "#";
-        a.className = "canon-item";
-        a.setAttribute("data-book", "Book " + i);
-        a.textContent = i + ". Book " + i + " – Author " + i;
-        li.appendChild(a);
-        canonList.appendChild(li);
-      }
-    }
-    generateCanonList();
+      // Philosophy (20)
+      "The Republic – Plato",
+      "The Symposium – Plato",
+      "Nicomachean Ethics – Aristotle",
+      "Meditations – Marcus Aurelius",
+      "Enchiridion – Epictetus",
+      "Letters from a Stoic – Seneca",
+      "Confessions – Augustine",
+      "Summa Theologica – Thomas Aquinas",
+      "The Consolation of Philosophy – Boethius",
+      "Discourse on the Method – René Descartes",
+      "Meditations on First Philosophy – René Descartes",
+      "Critique of Pure Reason – Immanuel Kant",
+      "Critique of Practical Reason – Immanuel Kant",
+      "Phenomenology of Spirit – G.W.F. Hegel",
+      "The Enneads – Plotinus",
+      "On Duties – Cicero",
+      "De Finibus Bonorum et Malorum – Cicero",
+      "Letters to Lucilius – Seneca",
+      "The Art of Living – Epictetus",
+      "The Golden Sayings – Anonymous",
 
-    // Handle review submission and timeline update
+      // Technology (20)
+      "Elements – Euclid",
+      "On the Equilibrium of Planes – Archimedes",
+      "On Floating Bodies – Archimedes",
+      "De Architectura – Vitruvius",
+      "Meteorologica – Aristotle",
+      "Physics – Aristotle",
+      "Optics – Ptolemy",
+      "Almagest – Ptolemy",
+      "De revolutionibus orbium coelestium – Copernicus",
+      "Mathematical Principles of Natural Philosophy – Isaac Newton",
+      "Opticks – Isaac Newton",
+      "The Book of Ingenious Devices – al-Jazari",
+      "The Sceptical Chymist – Robert Boyle",
+      "Micrographia – Robert Hooke",
+      "De Re Metallica – Georgius Agricola",
+      "The Advancement of Learning – Francis Bacon",
+      "Novum Organum – Francis Bacon",
+      "The Canon of Medicine – Avicenna",
+      "The Art of War – Sun Tzu",
+      "On the Nature of Things – Lucretius",
+
+      // Economics (20)
+      "The Wealth of Nations – Adam Smith",
+      "The Theory of Moral Sentiments – Adam Smith",
+      "An Essay on the Principle of Population – Thomas Malthus",
+      "On the Principles of Political Economy and Taxation – David Ricardo",
+      "On the Principles of Political Economy – John Stuart Mill",
+      "Economic Sophisms – Frédéric Bastiat",
+      "The Law – Frédéric Bastiat",
+      "Human Action – Ludwig von Mises",
+      "Socialism – Ludwig von Mises",
+      "Capitalism and Freedom – Milton Friedman",
+      "Free to Choose – Milton Friedman",
+      "Economics in One Lesson – Henry Hazlitt",
+      "The Road to Serfdom – Friedrich Hayek",
+      "The Fatal Conceit – Friedrich Hayek",
+      "The Constitution of Liberty – Friedrich Hayek",
+      "Principles of Economics – Alfred Marshall",
+      "Principles of Economics – Carl Menger",
+      "Economic Calculation in the Socialist Commonwealth – Ludwig von Mises",
+      "Man, Economy, and State – Murray Rothbard",
+      "Essays on Some Unsettled Questions in Political Economy – David Ricardo",
+
+      // Political Theory (20)
+      "Politics – Aristotle",
+      "The Republic – Plato",
+      "The Prince – Niccolò Machiavelli",
+      "Discourses on Livy – Niccolò Machiavelli",
+      "Leviathan – Thomas Hobbes",
+      "Two Treatises of Government – John Locke",
+      "Reflections on the Revolution in France – Edmund Burke",
+      "The Federalist Papers – Hamilton, Madison, and Jay",
+      "The Spirit of the Laws – Montesquieu",
+      "On Liberty – John Stuart Mill",
+      "Democracy in America – Alexis de Tocqueville",
+      "On Government – John Adams",
+      "The Conservative Mind – Russell Kirk",
+      "The Road to Serfdom – Friedrich Hayek",
+      "The Constitution of Liberty – Friedrich Hayek",
+      "Politics and Vision – Sheldon Wolin",
+      "The History of the Peloponnesian War – Thucydides",
+      "The Social Contract – Jean‑Jacques Rousseau",
+      "On the Law of War and Peace – Hugo Grotius",
+      "Two Concepts of Liberty – Isaiah Berlin"
+    ];
+    
+    // Generate the canon list items in the DOM from the curated array.
+    const canonListEl = document.getElementById("canon-list");
+    canonicalWorks = canonicalWorks; // alias for clarity
+    canonicalWorks.forEach((title) => {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+      a.href = "#";
+      a.className = "canon-item";
+      // Use the text before the dash as the data attribute (work title)
+      const workTitle = title.split(" – ")[0];
+      a.setAttribute("data-book", workTitle);
+      a.textContent = title;
+      li.appendChild(a);
+      canonListEl.appendChild(li);
+    });
+    
+    // Handle review submission and add to timeline.
     document.getElementById("submit-review").addEventListener("click", function() {
       const reviewText = document.getElementById("review-text").value.trim();
       const reviewOutput = document.getElementById("review-output");
-
+    
       if (!reviewText) {
         reviewOutput.innerHTML = "<p>Please enter your review before submitting.</p>";
         return;
       }
-
-      // Display the review in the widget
+    
+      // Display the review in the widget.
       reviewOutput.innerHTML = "<h4>Your Review:</h4><p>" + reviewText + "</p>";
-
-      // Create a timeline entry using the current date
+    
+      // Create a timeline entry using the current date.
       const currentDate = new Date();
       const formattedDate = formatDate(currentDate);
       
-      // For demonstration, assume the current book is "Hamlet"
+      // For demonstration, assume the current book is "Hamlet".
       const bookTitle = "Hamlet";
-
+    
       const timelineItem = document.createElement("li");
       timelineItem.className = "timeline-item";
       timelineItem.setAttribute("data-book", bookTitle);
@@ -240,11 +408,11 @@
       
       document.getElementById("timeline").appendChild(timelineItem);
       
-      // Clear the review input
+      // Clear the review input.
       document.getElementById("review-text").value = "";
     });
-
-    // Clicking a canon item scrolls to its timeline entry (if available)
+    
+    // Clicking a canon item scrolls to its timeline entry (if available).
     document.addEventListener("click", function(e) {
       if (e.target && e.target.matches(".canon-item")) {
         e.preventDefault();
@@ -263,6 +431,23 @@
           alert("No review for " + book + " yet.");
         }
       }
+    });
+    
+    // Bible in a Year Tracker functionality.
+    document.getElementById("bible-tracker-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const bibleDate = document.getElementById("bible-date").value;
+      const bibleProgress = document.getElementById("bible-progress").value.trim();
+      if (!bibleDate || !bibleProgress) {
+        alert("Please enter both a date and your progress (book and chapter).");
+        return;
+      }
+      const li = document.createElement("li");
+      li.textContent = `${bibleDate}: ${bibleProgress}`;
+      document.getElementById("bible-progress-list").appendChild(li);
+      // Clear the form fields.
+      document.getElementById("bible-date").value = "";
+      document.getElementById("bible-progress").value = "";
     });
   </script>
 </body>
