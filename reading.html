@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading Tracker</title>
+    <style>
+        body {
+            font-family: monospace;
+            background-color: #E8E8E8;
+            color: #0f172a;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        .header {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .reading-list, .add-reading {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        .reading-list h2, .add-reading h2 {
+            margin-top: 0;
+        }
+        .reading-item {
+            text-align: left;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .reading-item:last-child {
+            border-bottom: none;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        input[type="text"], textarea {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #1e293b;
+            color: #E8E8E8;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #0f172a;
+        }
+        .back-link {
+            margin-top: 20px;
+            display: inline-block;
+            color: #1e293b;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">Reading Tracker</div>
+        
+        <div class="reading-list">
+            <h2>Currently Reading</h2>
+            <div class="reading-item">
+                <strong>Book Title:</strong> Sample Book 1<br>
+                <strong>Author:</strong> Author Name<br>
+                <strong>Progress:</strong> Page 50<br>
+                <strong>Review:</strong> Intriguing insights.
+            </div>
+            <div class="reading-item">
+                <strong>Book Title:</strong> Sample Book 2<br>
+                <strong>Author:</strong> Another Author<br>
+                <strong>Progress:</strong> Page 120<br>
+                <strong>Review:</strong> A deep dive into the subject.
+            </div>
+        </div>
+
+        <div class="add-reading">
+            <h2>Add a New Reading Entry</h2>
+            <form>
+                <input type="text" name="title" placeholder="Book Title" required>
+                <input type="text" name="author" placeholder="Author" required>
+                <input type="text" name="progress" placeholder="Progress (e.g., Page 100)" required>
+                <textarea name="review" placeholder="Your review"></textarea>
+                <button type="submit">Add Entry</button>
+            </form>
+        </div>
+        
+        <a class="back-link" href="index.html">← Back to Portfolio</a>
+    </div>
+</body>
+</html>
