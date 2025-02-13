@@ -182,4 +182,259 @@
   </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Academic Reading Tracker</title>
+  <!-- Merriweather for a classic academic feel -->
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Global Styles */
+    body {
+      font-family: 'Merriweather', serif;
+      background-color: #f5f5f5;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+      line-height: 1.6;
+    }
+    h2, h3 {
+      text-align: center;
+      margin-top: 0;
+    }
+    /* Container Styles */
+    #reading-tracker-widget,
+    #timeline-container,
+    #canon-container {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 20px;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    /* Book Entry */
+    .book-entry p {
+      margin: 5px 0;
+    }
+    .book-entry p strong {
+      color: #2c3e50;
+    }
+    /* Review Section */
+    .review-section {
+      margin-top: 15px;
+    }
+    .review-section label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    #review-text {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1em;
+      margin-bottom: 10px;
+      resize: vertical;
+    }
+    #submit-review {
+      display: block;
+      margin: 0 auto;
+      padding: 10px 15px;
+      background-color: #2c3e50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    #submit-review:hover {
+      background-color: #34495e;
+    }
+    .review-output {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #fafafa;
+      border-left: 4px solid #2c3e50;
+    }
+    /* Timeline Styles */
+    #timeline {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .timeline-item {
+      margin-bottom: 20px;
+      position: relative;
+      padding-left: 40px;
+    }
+    .timeline-item:before {
+      content: '';
+      position: absolute;
+      left: 10px;
+      top: 5px;
+      width: 10px;
+      height: 10px;
+      background-color: #2c3e50;
+      border-radius: 50%;
+    }
+    .timeline-date {
+      font-size: 0.9em;
+      color: #777;
+      margin-bottom: 5px;
+    }
+    .timeline-content h4 {
+      margin: 0;
+      font-size: 1.1em;
+    }
+    .timeline-content p {
+      margin: 5px 0 0;
+      font-size: 0.95em;
+    }
+    /* Canon List Styles */
+    #canon-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    #canon-list li {
+      margin: 8px 0;
+    }
+    #canon-list a {
+      text-decoration: none;
+      color: #2c3e50;
+      font-weight: bold;
+    }
+    #canon-list a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <!-- Reading Tracker Widget -->
+  <div id="reading-tracker-widget">
+    <h2>Reading Tracker</h2>
+    <section class="book-entry">
+      <h3>Currently Reading</h3>
+      <p><strong>Title:</strong> <em>Hamlet</em></p>
+      <p><strong>Author:</strong> William Shakespeare</p>
+      <p><strong>Year:</strong> 1603</p>
+      <p><strong>Status:</strong> In Progress</p>
+      <div class="review-section">
+        <label for="review-text">Your Review</label>
+        <textarea id="review-text" rows="4" placeholder="Enter your review here..."></textarea>
+        <button id="submit-review">Submit Review &amp; Mark as Completed</button>
+      </div>
+      <div class="review-output" id="review-output"></div>
+    </section>
+  </div>
+
+  <!-- Timeline Visualization -->
+  <div id="timeline-container">
+    <h3>Reading Timeline</h3>
+    <ul id="timeline">
+      <!-- Timeline entries will appear here -->
+    </ul>
+  </div>
+
+  <!-- Harold Bloom's Western Canon List -->
+  <div id="canon-container">
+    <h3>Harold Bloom's Western Canon</h3>
+    <ul id="canon-list">
+      <li><a href="#" class="canon-item" data-book="The Odyssey">The Odyssey – Homer</a></li>
+      <li><a href="#" class="canon-item" data-book="The Iliad">The Iliad – Homer</a></li>
+      <li><a href="#" class="canon-item" data-book="The Aeneid">The Aeneid – Virgil</a></li>
+      <li><a href="#" class="canon-item" data-book="Divine Comedy">Divine Comedy – Dante</a></li>
+      <li><a href="#" class="canon-item" data-book="Don Quixote">Don Quixote – Cervantes</a></li>
+      <li><a href="#" class="canon-item" data-book="Hamlet">Hamlet – Shakespeare</a></li>
+      <li><a href="#" class="canon-item" data-book="Othello">Othello – Shakespeare</a></li>
+      <li><a href="#" class="canon-item" data-book="King Lear">King Lear – Shakespeare</a></li>
+      <li><a href="#" class="canon-item" data-book="Macbeth">Macbeth – Shakespeare</a></li>
+      <li><a href="#" class="canon-item" data-book="Paradise Lost">Paradise Lost – Milton</a></li>
+      <li><a href="#" class="canon-item" data-book="Candide">Candide – Voltaire</a></li>
+      <li><a href="#" class="canon-item" data-book="Faust">Faust – Goethe</a></li>
+      <li><a href="#" class="canon-item" data-book="Moby Dick">Moby Dick – Melville</a></li>
+      <li><a href="#" class="canon-item" data-book="Madame Bovary">Madame Bovary – Flaubert</a></li>
+      <li><a href="#" class="canon-item" data-book="War and Peace">War and Peace – Tolstoy</a></li>
+      <li><a href="#" class="canon-item" data-book="Crime and Punishment">Crime and Punishment – Dostoevsky</a></li>
+      <li><a href="#" class="canon-item" data-book="The Brothers Karamazov">The Brothers Karamazov – Dostoevsky</a></li>
+    </ul>
+  </div>
+
+  <script>
+    // Format a date as "Mon DD, YYYY"
+    function formatDate(date) {
+      const options = { year: 'numeric', month: 'short', day: 'numeric' };
+      return date.toLocaleDateString(undefined, options);
+    }
+
+    // Handle review submission and timeline update
+    document.getElementById("submit-review").addEventListener("click", function() {
+      const reviewText = document.getElementById("review-text").value.trim();
+      const reviewOutput = document.getElementById("review-output");
+
+      if (!reviewText) {
+        reviewOutput.innerHTML = "<p>Please enter your review before submitting.</p>";
+        return;
+      }
+
+      // Display the review in the widget
+      reviewOutput.innerHTML = "<h4>Your Review:</h4><p>" + reviewText + "</p>";
+
+      // Prepare the timeline entry with the current date
+      const currentDate = new Date();
+      const formattedDate = formatDate(currentDate);
+      
+      // For this example, the current book is "Hamlet"
+      const bookTitle = "Hamlet";
+
+      const timelineItem = document.createElement("li");
+      timelineItem.className = "timeline-item";
+      // Attach the book title as a data attribute for linking
+      timelineItem.setAttribute("data-book", bookTitle);
+      timelineItem.innerHTML = `
+        <div class="timeline-date">${formattedDate}</div>
+        <div class="timeline-content">
+          <h4>${bookTitle} (1603)</h4>
+          <p><strong>Review:</strong> ${reviewText}</p>
+        </div>
+      `;
+      
+      // Append the new entry to the timeline
+      document.getElementById("timeline").appendChild(timelineItem);
+      
+      // Clear the review textarea for future entries
+      document.getElementById("review-text").value = "";
+    });
+
+    // Enable clicking on canon items to jump to the review in the timeline
+    document.querySelectorAll(".canon-item").forEach(function(item) {
+      item.addEventListener("click", function(e) {
+        e.preventDefault();
+        const book = this.getAttribute("data-book");
+        const timelineItems = document.querySelectorAll("#timeline .timeline-item");
+        let found = false;
+        timelineItems.forEach(function(timelineItem) {
+          if (timelineItem.getAttribute("data-book") === book) {
+            found = true;
+            timelineItem.scrollIntoView({ behavior: "smooth", block: "center" });
+            // Briefly highlight the timeline item
+            timelineItem.style.backgroundColor = "#ffffcc";
+            setTimeout(function() {
+              timelineItem.style.backgroundColor = "";
+            }, 2000);
+          }
+        });
+        if (!found) {
+          alert("No review for " + book + " yet.");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
 
