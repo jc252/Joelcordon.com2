@@ -3,21 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Academic Reading Tracker</title>
-  <!-- Using Merriweather for a classic academic feel -->
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+  <title>Reading Tracker - Black &amp; White</title>
   <style>
-    /* Global Styles */
+    /* Global Styles (Black & White Only) */
     body {
-      font-family: 'Merriweather', serif;
-      background-color: #f5f5f5;
-      color: #333;
+      font-family: serif;
+      background-color: #fff;
+      color: #000;
       margin: 0;
       padding: 20px;
       max-width: 900px;
       margin-left: auto;
       margin-right: auto;
       line-height: 1.6;
+    }
+    a {
+      color: #000;
+      text-decoration: none;
+      border-bottom: 1px solid #000;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    header {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    header a.portfolio-link {
+      font-size: 1.2em;
+      font-weight: bold;
     }
     h2, h3 {
       text-align: center;
@@ -28,18 +42,17 @@
     #timeline-container,
     #canon-container {
       background-color: #fff;
-      border: 1px solid #ddd;
-      border-radius: 5px;
+      border: 1px solid #000;
+      border-radius: 4px;
       padding: 20px;
       margin-bottom: 30px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
     /* Book Entry */
     .book-entry p {
       margin: 5px 0;
     }
     .book-entry p strong {
-      color: #2c3e50;
+      font-weight: bold;
     }
     /* Review Section */
     .review-section {
@@ -53,30 +66,32 @@
     #review-text {
       width: 100%;
       padding: 10px;
-      border: 1px solid #ccc;
+      border: 1px solid #000;
       border-radius: 4px;
       font-size: 1em;
       margin-bottom: 10px;
       resize: vertical;
+      background-color: #fff;
+      color: #000;
     }
     #submit-review {
       display: block;
       margin: 0 auto;
       padding: 10px 15px;
-      background-color: #2c3e50;
+      background-color: #000;
       color: #fff;
       border: none;
       border-radius: 4px;
       cursor: pointer;
     }
     #submit-review:hover {
-      background-color: #34495e;
+      background-color: #333;
     }
     .review-output {
       margin-top: 20px;
       padding: 15px;
-      background-color: #fafafa;
-      border-left: 4px solid #2c3e50;
+      background-color: #f8f8f8;
+      border-left: 4px solid #000;
     }
     /* Timeline Styles */
     #timeline {
@@ -96,12 +111,12 @@
       top: 5px;
       width: 10px;
       height: 10px;
-      background-color: #2c3e50;
+      background-color: #000;
       border-radius: 50%;
     }
     .timeline-date {
       font-size: 0.9em;
-      color: #777;
+      color: #555;
       margin-bottom: 5px;
     }
     .timeline-content h4 {
@@ -117,28 +132,29 @@
       list-style: none;
       padding: 0;
       margin: 0;
+      columns: 2; /* Try to display in two columns if space permits */
     }
     #canon-list li {
-      margin: 8px 0;
+      margin: 4px 0;
     }
     #canon-list a {
-      text-decoration: none;
-      color: #2c3e50;
       font-weight: bold;
       cursor: pointer;
-    }
-    #canon-list a:hover {
-      text-decoration: underline;
     }
   </style>
 </head>
 <body>
+  <!-- Portfolio Link Header -->
+  <header>
+    <a class="portfolio-link" href="index.html">← Back to Portfolio</a>
+  </header>
+
   <!-- Reading Tracker Widget -->
   <div id="reading-tracker-widget">
     <h2>Reading Tracker</h2>
     <section class="book-entry">
       <h3>Currently Reading</h3>
-      <!-- For demonstration, this widget is preset with Hamlet -->
+      <!-- For demonstration, preset with Hamlet -->
       <p><strong>Title:</strong> <em>Hamlet</em></p>
       <p><strong>Author:</strong> William Shakespeare</p>
       <p><strong>Year:</strong> 1603</p>
@@ -156,44 +172,114 @@
   <div id="timeline-container">
     <h3>Reading Timeline</h3>
     <ul id="timeline">
-      <!-- Timeline entries will appear here -->
+      <!-- Timeline entries will be added here -->
     </ul>
   </div>
 
-  <!-- The Canon (Harold Bloom's Complete Western Canon) -->
+  <!-- The Canon List (100 Canonical Works) -->
   <div id="canon-container">
     <h3>The Canon</h3>
     <ul id="canon-list">
-      <li><a href="#" class="canon-item" data-book="The Iliad">The Iliad – Homer</a></li>
-      <li><a href="#" class="canon-item" data-book="The Odyssey">The Odyssey – Homer</a></li>
-      <li><a href="#" class="canon-item" data-book="Oresteia">Oresteia – Aeschylus</a></li>
-      <li><a href="#" class="canon-item" data-book="Oedipus Rex">Oedipus Rex – Sophocles</a></li>
-      <li><a href="#" class="canon-item" data-book="Medea">Medea – Euripides</a></li>
-      <li><a href="#" class="canon-item" data-book="The Republic">The Republic – Plato</a></li>
-      <li><a href="#" class="canon-item" data-book="Poetics">Poetics – Aristotle</a></li>
-      <li><a href="#" class="canon-item" data-book="The Aeneid">The Aeneid – Virgil</a></li>
-      <li><a href="#" class="canon-item" data-book="Metamorphoses">Metamorphoses – Ovid</a></li>
-      <li><a href="#" class="canon-item" data-book="The Divine Comedy">The Divine Comedy – Dante Alighieri</a></li>
-      <li><a href="#" class="canon-item" data-book="The Canterbury Tales">The Canterbury Tales – Geoffrey Chaucer</a></li>
-      <li><a href="#" class="canon-item" data-book="Don Quixote">Don Quixote – Miguel de Cervantes</a></li>
-      <li><a href="#" class="canon-item" data-book="Hamlet">Hamlet – William Shakespeare</a></li>
-      <li><a href="#" class="canon-item" data-book="Othello">Othello – William Shakespeare</a></li>
-      <li><a href="#" class="canon-item" data-book="King Lear">King Lear – William Shakespeare</a></li>
-      <li><a href="#" class="canon-item" data-book="Macbeth">Macbeth – William Shakespeare</a></li>
-      <li><a href="#" class="canon-item" data-book="Paradise Lost">Paradise Lost – John Milton</a></li>
-      <li><a href="#" class="canon-item" data-book="Candide">Candide – Voltaire</a></li>
-      <li><a href="#" class="canon-item" data-book="Faust">Faust – Johann Wolfgang von Goethe</a></li>
-      <li><a href="#" class="canon-item" data-book="Pride and Prejudice">Pride and Prejudice – Jane Austen</a></li>
-      <li><a href="#" class="canon-item" data-book="Moby Dick">Moby Dick – Herman Melville</a></li>
-      <li><a href="#" class="canon-item" data-book="Madame Bovary">Madame Bovary – Gustave Flaubert</a></li>
-      <li><a href="#" class="canon-item" data-book="War and Peace">War and Peace – Leo Tolstoy</a></li>
-      <li><a href="#" class="canon-item" data-book="Crime and Punishment">Crime and Punishment – Fyodor Dostoevsky</a></li>
-      <li><a href="#" class="canon-item" data-book="The Brothers Karamazov">The Brothers Karamazov – Fyodor Dostoevsky</a></li>
-      <li><a href="#" class="canon-item" data-book="Ulysses">Ulysses – James Joyce</a></li>
-      <li><a href="#" class="canon-item" data-book="In Search of Lost Time">In Search of Lost Time – Marcel Proust</a></li>
-      <li><a href="#" class="canon-item" data-book="The Trial">The Trial – Franz Kafka</a></li>
-      <li><a href="#" class="canon-item" data-book="Waiting for Godot">Waiting for Godot – Samuel Beckett</a></li>
-      <li><a href="#" class="canon-item" data-book="The Waste Land">The Waste Land – T. S. Eliot</a></li>
+      <li><a href="#" class="canon-item" data-book="The Iliad">1. The Iliad – Homer</a></li>
+      <li><a href="#" class="canon-item" data-book="The Odyssey">2. The Odyssey – Homer</a></li>
+      <li><a href="#" class="canon-item" data-book="The Aeneid">3. The Aeneid – Virgil</a></li>
+      <li><a href="#" class="canon-item" data-book="Beowulf">4. Beowulf – Anonymous</a></li>
+      <li><a href="#" class="canon-item" data-book="The Divine Comedy">5. The Divine Comedy – Dante Alighieri</a></li>
+      <li><a href="#" class="canon-item" data-book="The Canterbury Tales">6. The Canterbury Tales – Geoffrey Chaucer</a></li>
+      <li><a href="#" class="canon-item" data-book="Don Quixote">7. Don Quixote – Miguel de Cervantes</a></li>
+      <li><a href="#" class="canon-item" data-book="Hamlet">8. Hamlet – William Shakespeare</a></li>
+      <li><a href="#" class="canon-item" data-book="Othello">9. Othello – William Shakespeare</a></li>
+      <li><a href="#" class="canon-item" data-book="King Lear">10. King Lear – William Shakespeare</a></li>
+      <li><a href="#" class="canon-item" data-book="Macbeth">11. Macbeth – William Shakespeare</a></li>
+      <li><a href="#" class="canon-item" data-book="Romeo and Juliet">12. Romeo and Juliet – William Shakespeare</a></li>
+      <li><a href="#" class="canon-item" data-book="Paradise Lost">13. Paradise Lost – John Milton</a></li>
+      <li><a href="#" class="canon-item" data-book="Candide">14. Candide – Voltaire</a></li>
+      <li><a href="#" class="canon-item" data-book="Faust">15. Faust – Johann Wolfgang von Goethe</a></li>
+      <li><a href="#" class="canon-item" data-book="Pride and Prejudice">16. Pride and Prejudice – Jane Austen</a></li>
+      <li><a href="#" class="canon-item" data-book="Emma">17. Emma – Jane Austen</a></li>
+      <li><a href="#" class="canon-item" data-book="Sense and Sensibility">18. Sense and Sensibility – Jane Austen</a></li>
+      <li><a href="#" class="canon-item" data-book="Wuthering Heights">19. Wuthering Heights – Emily Brontë</a></li>
+      <li><a href="#" class="canon-item" data-book="Jane Eyre">20. Jane Eyre – Charlotte Brontë</a></li>
+      <li><a href="#" class="canon-item" data-book="Great Expectations">21. Great Expectations – Charles Dickens</a></li>
+      <li><a href="#" class="canon-item" data-book="A Tale of Two Cities">22. A Tale of Two Cities – Charles Dickens</a></li>
+      <li><a href="#" class="canon-item" data-book="Moby Dick">23. Moby Dick – Herman Melville</a></li>
+      <li><a href="#" class="canon-item" data-book="Madame Bovary">24. Madame Bovary – Gustave Flaubert</a></li>
+      <li><a href="#" class="canon-item" data-book="War and Peace">25. War and Peace – Leo Tolstoy</a></li>
+      <li><a href="#" class="canon-item" data-book="Anna Karenina">26. Anna Karenina – Leo Tolstoy</a></li>
+      <li><a href="#" class="canon-item" data-book="Crime and Punishment">27. Crime and Punishment – Fyodor Dostoevsky</a></li>
+      <li><a href="#" class="canon-item" data-book="The Brothers Karamazov">28. The Brothers Karamazov – Fyodor Dostoevsky</a></li>
+      <li><a href="#" class="canon-item" data-book="The Idiot">29. The Idiot – Fyodor Dostoevsky</a></li>
+      <li><a href="#" class="canon-item" data-book="Ulysses">30. Ulysses – James Joyce</a></li>
+      <li><a href="#" class="canon-item" data-book="Finnegans Wake">31. Finnegans Wake – James Joyce</a></li>
+      <li><a href="#" class="canon-item" data-book="In Search of Lost Time">32. In Search of Lost Time – Marcel Proust</a></li>
+      <li><a href="#" class="canon-item" data-book="The Trial">33. The Trial – Franz Kafka</a></li>
+      <li><a href="#" class="canon-item" data-book="The Metamorphosis">34. The Metamorphosis – Franz Kafka</a></li>
+      <li><a href="#" class="canon-item" data-book="Waiting for Godot">35. Waiting for Godot – Samuel Beckett</a></li>
+      <li><a href="#" class="canon-item" data-book="The Waste Land">36. The Waste Land – T. S. Eliot</a></li>
+      <li><a href="#" class="canon-item" data-book="As I Lay Dying">37. As I Lay Dying – William Faulkner</a></li>
+      <li><a href="#" class="canon-item" data-book="The Sound and the Fury">38. The Sound and the Fury – William Faulkner</a></li>
+      <li><a href="#" class="canon-item" data-book="Absalom, Absalom!">39. Absalom, Absalom! – William Faulkner</a></li>
+      <li><a href="#" class="canon-item" data-book="One Hundred Years of Solitude">40. One Hundred Years of Solitude – Gabriel García Márquez</a></li>
+      <li><a href="#" class="canon-item" data-book="Love in the Time of Cholera">41. Love in the Time of Cholera – Gabriel García Márquez</a></li>
+      <li><a href="#" class="canon-item" data-book="One Flew Over the Cuckoo's Nest">42. One Flew Over the Cuckoo's Nest – Ken Kesey</a></li>
+      <li><a href="#" class="canon-item" data-book="Catch-22">43. Catch-22 – Joseph Heller</a></li>
+      <li><a href="#" class="canon-item" data-book="Slaughterhouse-Five">44. Slaughterhouse-Five – Kurt Vonnegut</a></li>
+      <li><a href="#" class="canon-item" data-book="The Stranger">45. The Stranger – Albert Camus</a></li>
+      <li><a href="#" class="canon-item" data-book="The Plague">46. The Plague – Albert Camus</a></li>
+      <li><a href="#" class="canon-item" data-book="Nausea">47. Nausea – Jean‑Paul Sartre</a></li>
+      <li><a href="#" class="canon-item" data-book="The Fall">48. The Fall – Albert Camus</a></li>
+      <li><a href="#" class="canon-item" data-book="1984">49. 1984 – George Orwell</a></li>
+      <li><a href="#" class="canon-item" data-book="Animal Farm">50. Animal Farm – George Orwell</a></li>
+      <li><a href="#" class="canon-item" data-book="Brave New World">51. Brave New World – Aldous Huxley</a></li>
+      <li><a href="#" class="canon-item" data-book="Fahrenheit 451">52. Fahrenheit 451 – Ray Bradbury</a></li>
+      <li><a href="#" class="canon-item" data-book="Lord of the Flies">53. Lord of the Flies – William Golding</a></li>
+      <li><a href="#" class="canon-item" data-book="The Catcher in the Rye">54. The Catcher in the Rye – J.D. Salinger</a></li>
+      <li><a href="#" class="canon-item" data-book="To Kill a Mockingbird">55. To Kill a Mockingbird – Harper Lee</a></li>
+      <li><a href="#" class="canon-item" data-book="The Grapes of Wrath">56. The Grapes of Wrath – John Steinbeck</a></li>
+      <li><a href="#" class="canon-item" data-book="Of Mice and Men">57. Of Mice and Men – John Steinbeck</a></li>
+      <li><a href="#" class="canon-item" data-book="East of Eden">58. East of Eden – John Steinbeck</a></li>
+      <li><a href="#" class="canon-item" data-book="Invisible Man">59. Invisible Man – Ralph Ellison</a></li>
+      <li><a href="#" class="canon-item" data-book="Beloved">60. Beloved – Toni Morrison</a></li>
+      <li><a href="#" class="canon-item" data-book="Song of Solomon">61. Song of Solomon – Toni Morrison</a></li>
+      <li><a href="#" class="canon-item" data-book="Their Eyes Were Watching God">62. Their Eyes Were Watching God – Zora Neale Hurston</a></li>
+      <li><a href="#" class="canon-item" data-book="The Color Purple">63. The Color Purple – Alice Walker</a></li>
+      <li><a href="#" class="canon-item" data-book="On the Road">64. On the Road – Jack Kerouac</a></li>
+      <li><a href="#" class="canon-item" data-book="The Bell Jar">65. The Bell Jar – Sylvia Plath</a></li>
+      <li><a href="#" class="canon-item" data-book="A Portrait of the Artist as a Young Man">66. A Portrait of the Artist as a Young Man – James Joyce</a></li>
+      <li><a href="#" class="canon-item" data-book="Dubliners">67. Dubliners – James Joyce</a></li>
+      <li><a href="#" class="canon-item" data-book="The Sun Also Rises">68. The Sun Also Rises – Ernest Hemingway</a></li>
+      <li><a href="#" class="canon-item" data-book="For Whom the Bell Tolls">69. For Whom the Bell Tolls – Ernest Hemingway</a></li>
+      <li><a href="#" class="canon-item" data-book="The Old Man and the Sea">70. The Old Man and the Sea – Ernest Hemingway</a></li>
+      <li><a href="#" class="canon-item" data-book="The Scarlet Letter">71. The Scarlet Letter – Nathaniel Hawthorne</a></li>
+      <li><a href="#" class="canon-item" data-book="Leaves of Grass">72. Leaves of Grass – Walt Whitman</a></li>
+      <li><a href="#" class="canon-item" data-book="The Adventures of Huckleberry Finn">73. The Adventures of Huckleberry Finn – Mark Twain</a></li>
+      <li><a href="#" class="canon-item" data-book="The Adventures of Tom Sawyer">74. The Adventures of Tom Sawyer – Mark Twain</a></li>
+      <li><a href="#" class="canon-item" data-book="The Great Gatsby">75. The Great Gatsby – F. Scott Fitzgerald</a></li>
+      <li><a href="#" class="canon-item" data-book="Tender Is the Night">76. Tender Is the Night – F. Scott Fitzgerald</a></li>
+      <li><a href="#" class="canon-item" data-book="A Farewell to Arms">77. A Farewell to Arms – Ernest Hemingway</a></li>
+      <li><a href="#" class="canon-item" data-book="Lolita">78. Lolita – Vladimir Nabokov</a></li>
+      <li><a href="#" class="canon-item" data-book="Pale Fire">79. Pale Fire – Vladimir Nabokov</a></li>
+      <li><a href="#" class="canon-item" data-book="Ada or Ardor: A Family Chronicle">80. Ada or Ardor: A Family Chronicle – Vladimir Nabokov</a></li>
+      <li><a href="#" class="canon-item" data-book="Doctor Zhivago">81. Doctor Zhivago – Boris Pasternak</a></li>
+      <li><a href="#" class="canon-item" data-book="The Master and Margarita">82. The Master and Margarita – Mikhail Bulgakov</a></li>
+      <li><a href="#" class="canon-item" data-book="Demons">83. Demons – Fyodor Dostoevsky</a></li>
+      <li><a href="#" class="canon-item" data-book="A Clockwork Orange">84. A Clockwork Orange – Anthony Burgess</a></li>
+      <li><a href="#" class="canon-item" data-book="The Lord of the Rings">85. The Lord of the Rings – J.R.R. Tolkien</a></li>
+      <li><a href="#" class="canon-item" data-book="The Hobbit">86. The Hobbit – J.R.R. Tolkien</a></li>
+      <li><a href="#" class="canon-item" data-book="The Silmarillion">87. The Silmarillion – J.R.R. Tolkien</a></li>
+      <li><a href="#" class="canon-item" data-book="The Chronicles of Narnia">88. The Chronicles of Narnia – C.S. Lewis</a></li>
+      <li><a href="#" class="canon-item" data-book="The Once and Future King">89. The Once and Future King – T.H. White</a></li>
+      <li><a href="#" class="canon-item" data-book="The Road">90. The Road – Cormac McCarthy</a></li>
+      <li><a href="#" class="canon-item" data-book="Blood Meridian">91. Blood Meridian – Cormac McCarthy</a></li>
+      <li><a href="#" class="canon-item" data-book="No Country for Old Men">92. No Country for Old Men – Cormac McCarthy</a></li>
+      <li><a href="#" class="canon-item" data-book="The Brief Wondrous Life of Oscar Wao">93. The Brief Wondrous Life of Oscar Wao – Junot Díaz</a></li>
+      <li><a href="#" class="canon-item" data-book="The Kite Runner">94. The Kite Runner – Khaled Hosseini</a></li>
+      <li><a href="#" class="canon-item" data-book="A Thousand Splendid Suns">95. A Thousand Splendid Suns – Khaled Hosseini</a></li>
+      <li><a href="#" class="canon-item" data-book="The Alchemist">96. The Alchemist – Paulo Coelho</a></li>
+      <li><a href="#" class="canon-item" data-book="Life of Pi">97. Life of Pi – Yann Martel</a></li>
+      <li><a href="#" class="canon-item" data-book="The Wind-Up Bird Chronicle">98. The Wind-Up Bird Chronicle – Haruki Murakami</a></li>
+      <li><a href="#" class="canon-item" data-book="Norwegian Wood">99. Norwegian Wood – Haruki Murakami</a></li>
+      <li><a href="#" class="canon-item" data-book="Kafka on the Shore">100. Kafka on the Shore – Haruki Murakami</a></li>
     </ul>
   </div>
 
@@ -217,7 +303,7 @@
       // Display the review in the widget
       reviewOutput.innerHTML = "<h4>Your Review:</h4><p>" + reviewText + "</p>";
 
-      // Prepare the timeline entry using the current date
+      // Create a timeline entry using the current date
       const currentDate = new Date();
       const formattedDate = formatDate(currentDate);
       
@@ -226,7 +312,6 @@
 
       const timelineItem = document.createElement("li");
       timelineItem.className = "timeline-item";
-      // Attach the book title as a data attribute for linking
       timelineItem.setAttribute("data-book", bookTitle);
       timelineItem.innerHTML = `
         <div class="timeline-date">${formattedDate}</div>
@@ -236,14 +321,13 @@
         </div>
       `;
       
-      // Append the new entry to the timeline
       document.getElementById("timeline").appendChild(timelineItem);
       
-      // Clear the review textarea for future entries
+      // Clear the review input
       document.getElementById("review-text").value = "";
     });
 
-    // Enable clicking on canon items to jump to the corresponding review in the timeline
+    // Clicking on a canon item scrolls to its timeline entry (if available)
     document.querySelectorAll(".canon-item").forEach(function(item) {
       item.addEventListener("click", function(e) {
         e.preventDefault();
@@ -254,11 +338,8 @@
           if (timelineItem.getAttribute("data-book") === book) {
             found = true;
             timelineItem.scrollIntoView({ behavior: "smooth", block: "center" });
-            // Briefly highlight the timeline item
-            timelineItem.style.backgroundColor = "#ffffcc";
-            setTimeout(function() {
-              timelineItem.style.backgroundColor = "";
-            }, 2000);
+            timelineItem.style.backgroundColor = "#ccc";
+            setTimeout(() => timelineItem.style.backgroundColor = "", 2000);
           }
         });
         if (!found) {
