@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,18 +73,18 @@
       margin-top: -10px;
     }
 
-    /* Folder Styling – scaled down by a factor of 0.1 */
+    /* Folder Styling – scaled down by factor of 0.5 */
     .folder {
       position: relative;
-      width: calc(180px * 0.1); /* 18px */
-      height: calc(110px * 0.1); /* 11px */
+      width: calc(180px * 0.5); /* 90px */
+      height: calc(110px * 0.5); /* 55px */
       background-color: #e7c083;
-      border-radius: calc(10px * 0.1); /* 1px */
-      box-shadow: calc(3px * 0.1) calc(3px * 0.1) calc(8px * 0.1) rgba(0, 0, 0, 0.2); /* 0.3px 0.3px 0.8px */
+      border-radius: calc(10px * 0.5); /* 5px */
+      box-shadow: calc(3px * 0.5) calc(3px * 0.5) calc(8px * 0.5) rgba(0, 0, 0, 0.2); /* 1.5px 1.5px 4px */
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: calc(0.9rem * 0.1); /* 0.09rem */
+      font-size: calc(0.9rem * 0.5); /* 0.45rem */
       font-weight: bold;
       text-transform: uppercase;
       color: #1e293b;
@@ -92,22 +93,22 @@
     .folder::before {
       content: attr(data-title);
       position: absolute;
-      top: calc(-16px * 0.1); /* -1.6px */
-      left: calc(10px * 0.1); /* 1px */
+      top: calc(-16px * 0.5); /* -8px */
+      left: calc(10px * 0.5); /* 5px */
       width: 50%;
-      height: calc(18px * 0.1); /* 1.8px */
+      height: calc(18px * 0.5); /* 9px */
       background-color: #d1a768;
-      border-radius: calc(5px * 0.1) calc(5px * 0.1) 0 0; /* 0.5px */
+      border-radius: calc(5px * 0.5) calc(5px * 0.5) 0 0; /* 2.5px 2.5px 0 0 */
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: calc(0.8rem * 0.1); /* 0.08rem */
+      font-size: calc(0.8rem * 0.5); /* 0.4rem */
       font-weight: bold;
       color: #000000;
     }
     .folder:hover {
       transform: scale(1.05);
-      box-shadow: calc(5px * 0.1) calc(5px * 0.1) calc(15px * 0.1) rgba(0, 0, 0, 0.3); /* 0.5px 0.5px 1.5px */
+      box-shadow: calc(5px * 0.5) calc(5px * 0.5) calc(15px * 0.5) rgba(0, 0, 0, 0.3); /* 2.5px 2.5px 7.5px */
     }
 
     /* Social Links – Button Colors Set to Black */
@@ -125,7 +126,7 @@
       display: inline-block;
       margin: 5px;
       padding: 6px 10px;
-      background-color: #000000; /* now black */
+      background-color: #000000;
       color: #E8E8E8;
       text-decoration: none;
       border-radius: 5px;
