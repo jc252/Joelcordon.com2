@@ -1,111 +1,311 @@
-<!-- Reading Tracker Widget -->
-<div id="reading-tracker-widget">
-  <div class="widget-header">
-    <h2>Reading Tracker</h2>
-  </div>
-  <div class="widget-body">
-    <section class="book-entry">
-      <h3>Currently Reading</h3>
-      <p><strong>Title:</strong> <em>Computing Machinery and Intelligence</em></p>
-      <p><strong>Author:</strong> A.M. Turing</p>
-      <p><strong>Year:</strong> 1950</p>
-      <p><strong>Status:</strong> In Progress</p>
-      <div class="review-section">
-        <label for="review-text"><strong>Your Review:</strong></label>
-        <textarea id="review-text" placeholder="Enter your review here..." rows="4"></textarea>
-        <button id="submit-review">Submit Review</button>
-      </div>
-      <div class="review-output"></div>
-    </section>
-    <section class="completed-readings">
-      <h3>Completed Readings</h3>
-      <ul id="completed-list">
-        <!-- Future completed readings will appear here -->
-      </ul>
-    </section>
-  </div>
-</div>
 
-<!-- Styles for the widget -->
-<style>
-  #reading-tracker-widget {
-    border: 1px solid #ddd;
-    padding: 20px;
-    background: #fdfdfd;
-    font-family: 'Georgia', serif;
-    max-width: 450px;
-    margin: 20px auto;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  }
-  .widget-header h2 {
-    margin: 0 0 15px;
-    font-size: 1.8em;
-    border-bottom: 2px solid #ccc;
-    padding-bottom: 10px;
-  }
-  .book-entry h3,
-  .completed-readings h3 {
-    font-size: 1.4em;
-    margin-bottom: 10px;
-  }
-  .book-entry p {
-    margin: 5px 0;
-    line-height: 1.5;
-  }
-  .review-section {
-    margin-top: 15px;
-  }
-  .review-section label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  #review-text {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    font-family: inherit;
-    font-size: 0.95em;
-    border-radius: 4px;
-  }
-  #submit-review {
-    margin-top: 10px;
-    padding: 8px 16px;
-    background: #005a9c;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    font-size: 0.95em;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  #submit-review:hover {
-    background: #004477;
-  }
-  .review-output {
-    margin-top: 20px;
-    font-style: italic;
-    color: #555;
-    border-top: 1px solid #eee;
-    padding-top: 10px;
-  }
-  .completed-readings ul {
-    list-style-type: disc;
-    margin-left: 20px;
-  }
-</style>
-
-<!-- JavaScript to handle review submission -->
-<script>
-  document.getElementById("submit-review").addEventListener("click", function() {
-    var reviewText = document.getElementById("review-text").value.trim();
-    var reviewOutput = document.querySelector(".review-output");
-    
-    if (reviewText) {
-      reviewOutput.innerHTML = "<h4>Your Review:</h4><p>" + reviewText + "</p>";
-      // Here you could also add code to update a backend or local storage.
-    } else {
-      reviewOutput.innerHTML = "<p>Please enter your review before submitting.</p>";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Academic Futuristic Reading Tracker</title>
+  <!-- Google Fonts for a Futuristic & Academic Look -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #0a0f23;
+      --secondary-color: #1f2747;
+      --accent-color: #4caf50;
+      --text-color: #f5f5f5;
+      --background-gradient: linear-gradient(135deg, #0a0f23, #1f2747);
+      --font-futuristic: 'Orbitron', sans-serif;
+      --font-academic: 'Merriweather', serif;
+      --border-radius: 8px;
     }
-  });
-</script>
+    
+    body {
+      margin: 0;
+      padding: 20px;
+      background: var(--background-gradient);
+      font-family: var(--font-academic);
+      color: var(--text-color);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    
+    /* Reading Tracker Widget Styles */
+    #reading-tracker-widget {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: var(--border-radius);
+      padding: 20px 30px;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(5px);
+      transition: transform 0.3s ease;
+      margin-bottom: 40px;
+    }
+    
+    #reading-tracker-widget:hover {
+      transform: scale(1.02);
+    }
+    
+    .widget-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .widget-header h2 {
+      font-family: var(--font-futuristic);
+      font-size: 2em;
+      margin: 0;
+      color: var(--accent-color);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    
+    .widget-body section {
+      margin-bottom: 20px;
+    }
+    
+    .widget-body h3 {
+      font-family: var(--font-futuristic);
+      color: var(--accent-color);
+      margin-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      padding-bottom: 5px;
+    }
+    
+    .book-entry p {
+      margin: 6px 0;
+      font-size: 1em;
+    }
+    
+    .book-entry p strong {
+      color: var(--accent-color);
+    }
+    
+    .review-section {
+      margin-top: 15px;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .review-section label {
+      margin-bottom: 5px;
+      font-family: var(--font-futuristic);
+      font-size: 0.9em;
+      color: var(--accent-color);
+    }
+    
+    #review-text {
+      padding: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: var(--border-radius);
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-color);
+      font-family: var(--font-academic);
+      font-size: 0.9em;
+      resize: vertical;
+      transition: border 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    #review-text:focus {
+      outline: none;
+      border-color: var(--accent-color);
+      box-shadow: 0 0 8px var(--accent-color);
+    }
+    
+    #submit-review {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background: var(--accent-color);
+      border: none;
+      border-radius: var(--border-radius);
+      font-family: var(--font-futuristic);
+      font-size: 0.9em;
+      color: var(--primary-color);
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+      align-self: flex-start;
+    }
+    
+    #submit-review:hover {
+      background: #66bb6a;
+      transform: scale(1.05);
+    }
+    
+    .review-output {
+      margin-top: 20px;
+      padding: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.3);
+      font-style: italic;
+      color: var(--text-color);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    
+    .review-output.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Timeline Styles */
+    #timeline-container {
+      width: 100%;
+      max-width: 500px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: var(--border-radius);
+      padding: 20px 30px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(5px);
+      transition: transform 0.3s ease;
+      margin-bottom: 40px;
+    }
+    
+    #timeline-container:hover {
+      transform: scale(1.02);
+    }
+    
+    #timeline-container h3 {
+      font-family: var(--font-futuristic);
+      color: var(--accent-color);
+      margin-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      padding-bottom: 5px;
+    }
+    
+    #timeline {
+      list-style: none;
+      position: relative;
+      padding-left: 30px;
+    }
+    
+    #timeline:before {
+      content: '';
+      position: absolute;
+      left: 15px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--accent-color);
+    }
+    
+    .timeline-item {
+      position: relative;
+      margin-bottom: 20px;
+      padding-left: 20px;
+    }
+    
+    .timeline-item:before {
+      content: '';
+      position: absolute;
+      left: -15px;
+      top: 0;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent-color);
+    }
+    
+    .timeline-date {
+      font-size: 0.8em;
+      color: #ccc;
+      margin-bottom: 5px;
+    }
+    
+    .timeline-content h4 {
+      margin: 0;
+      font-size: 1.1em;
+      color: var(--text-color);
+    }
+    
+    .timeline-content p {
+      margin: 5px 0 0;
+      font-size: 0.9em;
+      color: #ddd;
+    }
+  </style>
+</head>
+<body>
+  <!-- Reading Tracker Widget -->
+  <div id="reading-tracker-widget">
+    <div class="widget-header">
+      <h2>Reading Tracker</h2>
+    </div>
+    <div class="widget-body">
+      <!-- Currently Reading Section -->
+      <section class="book-entry">
+        <h3>Currently Reading</h3>
+        <p><strong>Title:</strong> <em>Computing Machinery and Intelligence</em></p>
+        <p><strong>Author:</strong> A.M. Turing</p>
+        <p><strong>Year:</strong> 1950</p>
+        <p><strong>Status:</strong> In Progress</p>
+        <div class="review-section">
+          <label for="review-text">Your Review</label>
+          <textarea id="review-text" placeholder="Share your insights..." rows="4"></textarea>
+          <button id="submit-review">Submit Review &amp; Mark as Completed</button>
+        </div>
+        <div class="review-output" id="review-output">
+          <!-- Submitted review will appear here -->
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Timeline Visualization -->
+  <div id="timeline-container">
+    <h3>Reading Timeline</h3>
+    <ul id="timeline">
+      <!-- Timeline entries will be added here -->
+    </ul>
+  </div>
+
+  <script>
+    // Utility function to format date as "Mon DD, YYYY"
+    function formatDate(date) {
+      const options = { year: 'numeric', month: 'short', day: 'numeric' };
+      return date.toLocaleDateString('en-US', options);
+    }
+    
+    document.getElementById("submit-review").addEventListener("click", function() {
+      const reviewText = document.getElementById("review-text").value.trim();
+      const reviewOutput = document.getElementById("review-output");
+      
+      if (!reviewText) {
+        reviewOutput.innerHTML = `<p>Please enter your review before submitting.</p>`;
+        reviewOutput.classList.add("show");
+        return;
+      }
+      
+      // Update the review display in the widget
+      reviewOutput.innerHTML = `<h4>Your Review:</h4><p>${reviewText}</p>`;
+      reviewOutput.classList.add("show");
+      
+      // Get the current date for timeline tagging
+      const currentDate = new Date();
+      const formattedDate = formatDate(currentDate);
+      
+      // Create a new timeline item
+      const timelineItem = document.createElement("li");
+      timelineItem.classList.add("timeline-item");
+      timelineItem.innerHTML = `
+        <div class="timeline-date">${formattedDate}</div>
+        <div class="timeline-content">
+          <h4>Computing Machinery and Intelligence (1950)</h4>
+          <p><strong>Review:</strong> ${reviewText}</p>
+        </div>
+      `;
+      
+      // Append the new timeline item to the timeline list
+      document.getElementById("timeline").appendChild(timelineItem);
+      
+      // Optionally, clear the textarea (if you plan to read a new book)
+      document.getElementById("review-text").value = "";
+    });
+  </script>
+</body>
+</html>
+
 
