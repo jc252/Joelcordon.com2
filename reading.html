@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,7 +54,7 @@
     .book-entry p strong {
       font-weight: bold;
     }
-    /* Review Section */
+    /* Review Section (Read-Only) */
     .review-section {
       margin-top: 15px;
     }
@@ -62,35 +63,18 @@
       font-weight: bold;
       margin-bottom: 5px;
     }
-    #review-text {
-      width: 100%;
+    /* Instead of input fields, we simply display a static review message */
+    .review-static {
       padding: 10px;
       border: 1px solid #000;
       border-radius: 4px;
-      font-size: 1em;
-      margin-bottom: 10px;
-      resize: vertical;
-      background-color: #fff;
-      color: #000;
-    }
-    #submit-review {
-      display: block;
-      margin: 0 auto;
-      padding: 10px 15px;
-      background-color: #000;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    #submit-review:hover {
-      background-color: #333;
-    }
-    .review-output {
-      margin-top: 20px;
-      padding: 15px;
       background-color: #f8f8f8;
-      border-left: 4px solid #000;
+      color: #000;
+      font-size: 1em;
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     /* Timeline Styles */
     #timeline {
@@ -159,23 +143,23 @@
       <p><strong>Year:</strong> 1603</p>
       <p><strong>Status:</strong> In Progress</p>
       <div class="review-section">
-        <label for="review-text">Your Review</label>
-        <textarea id="review-text" rows="4" placeholder="Enter your review here..."></textarea>
-        <button id="submit-review">Submit Review &amp; Mark as Completed</button>
+        <label>Your Review (read-only):</label>
+        <div class="review-static">
+          No reviews are allowed.
+        </div>
       </div>
-      <div class="review-output" id="review-output"></div>
     </section>
   </div>
 
-  <!-- Timeline Visualization -->
+  <!-- Timeline Visualization (Manual Updates Only) -->
   <div id="timeline-container">
     <h3>Reading Timeline</h3>
     <ul id="timeline">
-      <!-- Timeline entries will appear here -->
+      <!-- Timeline entries (if any) will appear here. You can update this manually in the code. -->
     </ul>
   </div>
 
-  <!-- Canon List (1000 Canonical Works: First 100 Curated) -->
+  <!-- The Canon List (1000 Canonical Works: First 100 Curated) -->
   <div id="canon-container">
     <h3>The Canon</h3>
     <ul id="canon-list">
@@ -184,15 +168,13 @@
   </div>
 
   <script>
-    // Helper function to format dates as "Mon DD, YYYY"
+    // Helper: Format a date as "Mon DD, YYYY"
     function formatDate(date) {
       const options = { year: 'numeric', month: 'short', day: 'numeric' };
       return date.toLocaleDateString(undefined, options);
     }
     
-    // Define curated works for the first 100 titles.
-    // Categories (in order): 
-    // 1. Canonical Literature (17 items)
+    // Define curated works for the first 100 titles, divided equally among 6 categories.
     const literature = [
       "The Iliad – Homer",
       "The Odyssey – Homer",
@@ -212,7 +194,6 @@
       "The Great Gatsby – F. Scott Fitzgerald",
       "One Hundred Years of Solitude – Gabriel García Márquez"
     ];
-    // 2. Philosophy (17 items)
     const philosophy = [
       "The Republic – Plato",
       "The Symposium – Plato",
@@ -232,7 +213,6 @@
       "On Duties – Cicero",
       "Letters to Lucilius – Seneca"
     ];
-    // 3. Economics (17 items)
     const economics = [
       "The Wealth of Nations – Adam Smith",
       "The Theory of Moral Sentiments – Adam Smith",
@@ -252,7 +232,6 @@
       "Principles of Economics – Alfred Marshall",
       "Man, Economy, and State – Murray Rothbard"
     ];
-    // 4. Political Theory (17 items)
     const politics = [
       "The Prince – Niccolò Machiavelli",
       "Discourses on Livy – Niccolò Machiavelli",
@@ -270,9 +249,8 @@
       "The Social Contract – Jean‑Jacques Rousseau",
       "On the Law of War and Peace – Hugo Grotius",
       "Two Concepts of Liberty – Isaiah Berlin",
-      "Cato's Letters – John Trenchard and Thomas Gordon"
+      "Cato's Letters – John Trenchard & Thomas Gordon"
     ];
-    // 5. Christianity (16 items)
     const christianity = [
       "The Bible – King James Version",
       "The City of God – Augustine",
@@ -287,11 +265,10 @@
       "The Sayings of the Desert Fathers – Anonymous",
       "The Bondage of the Will – Martin Luther",
       "Theologia Germanica – Anonymous",
-      "Cato's Letters (as Christian moral treatises) – Trenchard & Gordon",  // Optional duplication if needed, but we'll include one variant
       "Confessions of Saint Patrick – Saint Patrick",
-      "Lives of the Saints – Alban Butler"
+      "Lives of the Saints – Alban Butler",
+      "On the Incarnation – Athanasius"
     ];
-    // 6. Artificial Intelligence (16 items)
     const ai = [
       "Computing Machinery and Intelligence – A.M. Turing",
       "Cybernetics – Norbert Wiener",
@@ -311,9 +288,9 @@
       "The Master Algorithm – Pedro Domingos"
     ];
     
-    // Concatenate all curated arrays in order
+    // Concatenate the curated arrays (ensure the total is 100 titles)
     const curatedWorks = literature.concat(philosophy, economics, politics, christianity, ai);
-    // Verify length is 17+17+17+17+16+16 = 100.
+    // Verify: literature (17) + philosophy (17) + economics (17) + politics (17) + christianity (16) + ai (16) = 100
     
     // Create final canon array of 1000 items.
     const totalCanonItems = 1000;
@@ -322,14 +299,13 @@
       finalCanonWorks.push(`${i}. Placeholder Canonical Work – Author ${i}`);
     }
     
-    // Generate canon list items in the DOM
+    // Generate canon list items in the DOM from finalCanonWorks.
     const canonListEl = document.getElementById("canon-list");
     finalCanonWorks.forEach((title) => {
       const li = document.createElement("li");
       const a = document.createElement("a");
       a.href = "#";
       a.className = "canon-item";
-      // Use the text before the dash as the data attribute (work title)
       const workTitle = title.split(" – ")[0];
       a.setAttribute("data-book", workTitle);
       a.textContent = title;
@@ -337,44 +313,9 @@
       canonListEl.appendChild(li);
     });
     
-    // Handle review submission and timeline update
-    document.getElementById("submit-review").addEventListener("click", function() {
-      const reviewText = document.getElementById("review-text").value.trim();
-      const reviewOutput = document.getElementById("review-output");
-    
-      if (!reviewText) {
-        reviewOutput.innerHTML = "<p>Please enter your review before submitting.</p>";
-        return;
-      }
-    
-      // Display the review in the widget
-      reviewOutput.innerHTML = "<h4>Your Review:</h4><p>" + reviewText + "</p>";
-    
-      // Create a timeline entry using the current date
-      const currentDate = new Date();
-      const formattedDate = formatDate(currentDate);
-      
-      // For demonstration, assume the current book is "Hamlet"
-      const bookTitle = "Hamlet";
-    
-      const timelineItem = document.createElement("li");
-      timelineItem.className = "timeline-item";
-      timelineItem.setAttribute("data-book", bookTitle);
-      timelineItem.innerHTML = `
-        <div class="timeline-date">${formattedDate}</div>
-        <div class="timeline-content">
-          <h4>${bookTitle} (1603)</h4>
-          <p><strong>Review:</strong> ${reviewText}</p>
-        </div>
-      `;
-      
-      document.getElementById("timeline").appendChild(timelineItem);
-      
-      // Clear the review input
-      document.getElementById("review-text").value = "";
-    });
-    
-    // Clicking a canon item scrolls to its timeline entry (if available)
+    // Timeline: (Review submission is now removed so that no reviews are allowed.)
+    // For demonstration, we provide a function to add timeline entries manually (this code is kept but not exposed).
+    // Clicking a canon item scrolls to its timeline entry if available.
     document.addEventListener("click", function(e) {
       if (e.target && e.target.matches(".canon-item")) {
         e.preventDefault();
@@ -390,7 +331,7 @@
           }
         });
         if (!found) {
-          alert("No review for " + book + " yet.");
+          alert("No timeline entry for " + book + " exists.");
         }
       }
     });
