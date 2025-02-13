@@ -26,7 +26,7 @@
         margin-bottom: 20px;
       }
       header h1 {
-        font-size: 2em; /* smaller than before */
+        font-size: 2em;
         margin-bottom: 5px;
         letter-spacing: 0.5px;
       }
@@ -42,11 +42,14 @@
       section {
         margin-bottom: 30px;
       }
+      /* Make section headings the same size as list item links (0.95em) */
       section h2 {
-        font-size: 1.4em;
+        font-size: 0.95em;
         margin-bottom: 10px;
         border-bottom: 1px solid #ccc;
         padding-bottom: 3px;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
       }
       ul {
         list-style: none;
@@ -72,6 +75,13 @@
         font-size: 0.8em;
         color: #777;
       }
+      footer a {
+        color: #0066cc;
+        text-decoration: none;
+      }
+      footer a:hover {
+        text-decoration: underline;
+      }
       /* Responsive Adjustments */
       @media (max-width: 600px) {
         main {
@@ -81,7 +91,7 @@
           font-size: 1.8em;
         }
         section h2 {
-          font-size: 1.3em;
+          font-size: 0.95em;
         }
       }
     </style>
@@ -91,7 +101,7 @@
       <h1>Reading List</h1>
     </header>
     <main>
-      <!-- Philosophical Works -->
+      <!-- Philosophical Works (40 items) -->
       <section id="philosophy">
         <h2>Philosophical Works</h2>
         <ul>
@@ -115,7 +125,6 @@
           <li><a href="wittgenstein-tractatus.html" target="_blank">Wittgenstein's Tractatus Logico-Philosophicus</a></li>
           <li><a href="wittgenstein-investigations.html" target="_blank">Wittgenstein's Philosophical Investigations</a></li>
           <li><a href="de-beauvoir-second-sex.html" target="_blank">Simone de Beauvoir's The Second Sex</a></li>
-          <!-- Additional 20 -->
           <li><a href="augustine-confessions.html" target="_blank">Augustine's Confessions</a></li>
           <li><a href="aquinas-summa.html" target="_blank">Aquinas' Summa Theologica</a></li>
           <li><a href="plotinus-enneads.html" target="_blank">Plotinus' Enneads</a></li>
@@ -143,7 +152,7 @@
         </ul>
       </section>
 
-      <!-- Economic Works -->
+      <!-- Economic Works (40 items) -->
       <section id="economics">
         <h2>Economic Works</h2>
         <ul>
@@ -167,7 +176,6 @@
           <li><a href="bohm-bawerk.html" target="_blank">Böhm-Bawerk's Capital and Interest</a></li>
           <li><a href="bastiat-sophisms.html" target="_blank">Bastiat's Economic Sophisms</a></li>
           <li><a href="sen-development.html" target="_blank">Sen's Development as Freedom</a></li>
-          <!-- Additional 20 -->
           <li><a href="schumpeter-history.html" target="_blank">Schumpeter's History of Economic Analysis</a></li>
           <li><a href="keynes-treatise.html" target="_blank">Keynes' A Treatise on Money</a></li>
           <li><a href="galbraith-newindustrial.html" target="_blank">Galbraith's The New Industrial State</a></li>
@@ -191,7 +199,7 @@
         </ul>
       </section>
 
-      <!-- Political Works -->
+      <!-- Political Works (40 items) -->
       <section id="politics">
         <h2>Political Works</h2>
         <ul>
@@ -215,7 +223,6 @@
           <li><a href="nozick-anarchy.html" target="_blank">Nozick's Anarchy, State, and Utopia</a></li>
           <li><a href="huntington-clash.html" target="_blank">Huntington's The Clash of Civilizations</a></li>
           <li><a href="fukuyama-end.html" target="_blank">Fukuyama's The End of History and the Last Man</a></li>
-          <!-- Additional 20 -->
           <li><a href="machiavelli-discourses.html" target="_blank">Machiavelli's Discourses on Livy</a></li>
           <li><a href="mill-representative.html" target="_blank">Mill's Considerations on Representative Government</a></li>
           <li><a href="rousseau-inequality.html" target="_blank">Rousseau's Discourse on Inequality</a></li>
@@ -239,7 +246,7 @@
         </ul>
       </section>
 
-      <!-- The Classics -->
+      <!-- The Classics (40 items) -->
       <section id="classics">
         <h2>The Classics</h2>
         <ul>
@@ -263,7 +270,6 @@
           <li><a href="hugo-lesmiserables.html" target="_blank">Hugo's Les Misérables</a></li>
           <li><a href="joyce-ulysses.html" target="_blank">Joyce's Ulysses</a></li>
           <li><a href="tse-eliot-wasteland.html" target="_blank">T.S. Eliot's The Waste Land</a></li>
-          <!-- Additional 20 -->
           <li><a href="sophocles-oedipus.html" target="_blank">Sophocles' Oedipus Rex</a></li>
           <li><a href="euripides-medea.html" target="_blank">Euripides' Medea</a></li>
           <li><a href="aeschylus-oresteia.html" target="_blank">Aeschylus' Oresteia</a></li>
@@ -288,8 +294,8 @@
       </section>
     </main>
     <footer>
+      <p><a href="index.html">Back to Homepage</a></p>
       <p>&copy; 2025 Your Name. All rights reserved.</p>
     </footer>
   </body>
 </html>
-
