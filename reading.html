@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,19 +7,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.5">
   <title>Joel Cordon - Reading List</title>
   <style>
-    /* Global Styles: Set font to Times New Roman */
+    /* Global Styles */
     body {
       font-family: "Times New Roman", serif;
       background-color: #E8E8E8;
-      color: #E8E8E8;
+      color: #1e293b;
       text-align: center;
       margin: 0;
       padding: 0;
       position: relative;
       overflow-x: hidden;
     }
-
-    /* Background Python Code - FULL COVERAGE */
+    /* Background motif */
     .background-text {
       position: fixed;
       top: 0;
@@ -26,7 +26,6 @@
       width: 100vw;
       height: 100vh;
       font-size: 60px;
-      opacity: 1.0;
       font-weight: bold;
       color: #0f172a;
       z-index: -1;
@@ -37,7 +36,7 @@
       pointer-events: none;
     }
     .background-text::before {
-      content: ">>> exploring.start() import AI def research(): return ideas >>> exploring.start() import AI def research(): return ideas >>> exploring.start() import AI def research(): return ideas ";
+      content: ">>> exploring.start() import AI def research(): return ideas ";
       position: absolute;
       top: 0;
       left: 0;
@@ -48,167 +47,69 @@
       white-space: pre-wrap;
       line-height: 2;
     }
-
-    /* Header Styling */
+    /* Header styles */
     .header {
       font-size: 1.8rem;
       font-weight: 900;
+      margin-top: 20px;
       margin-bottom: 5px;
       background: linear-gradient(to right, #0f172a, #1e293b);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
     .subheader {
-      font-size: 0.9rem;
+      font-size: 1rem;
       color: #1e293b;
-      margin-bottom: 40px;
+      margin-bottom: 20px;
     }
-
-    /* Content styling for page content */
+    /* Content container */
     .content {
       max-width: 800px;
-      margin: 0 auto;
-      text-align: left;
+      margin: 20px auto;
       padding: 20px;
-      background: rgba(255,255,255,0.1);
+      background: rgba(255, 255, 255, 0.8);
       border-radius: 8px;
-      color: #1e293b;
+      text-align: left;
     }
-    .content h2, .content h3 {
+    .content h2 {
       color: #0f172a;
+      margin-top: 0;
     }
-    .content ol, .content ul {
+    .content ol {
       margin-left: 20px;
     }
-
-    /* Social Links – Smaller buttons */
-    .social-links {
-      margin-top: 30px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 8px;
-      max-width: 550px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .social-links a {
+    /* Return link */
+    .return-home {
+      margin-top: 20px;
       display: inline-block;
-      margin: 4px;
-      padding: 4px 6px;
-      background-color: #000000;
-      color: #E8E8E8;
+      font-size: 0.9rem;
+      color: #1e293b;
       text-decoration: none;
-      border-radius: 5px;
-      transition: background 0.3s ease;
-      font-size: 10px;
-      width: 80px;
-      text-align: center;
-    }
-    .social-links a:hover {
-      background-color: #000000;
-    }
-
-    /* Hire Me and CV Buttons – Smaller buttons for consistency */
-    .hire-me {
-      margin-top: 40px;
-    }
-    .hire-button {
-      display: inline-block;
-      font-size: 0.8rem;
-      font-weight: bold;
-      color: #000000;
-      border: 2px solid #000000;
-      padding: 6px 12px;
-      border-radius: 6px;
-      text-decoration: none;
+      border: 1px solid #1e293b;
+      padding: 4px 8px;
+      border-radius: 4px;
       transition: background 0.3s ease, color 0.3s ease;
     }
-    .hire-button:hover {
-      background-color: #000000;
+    .return-home:hover {
+      background-color: #1e293b;
       color: #E8E8E8;
-    }
-    .cv-box {
-      margin-top: 15px;
-      padding: 6px 12px;
-      background-color: #000000;
-      color: #E8E8E8;
-      display: inline-block;
-      border-radius: 6px;
-      font-size: 0.8rem;
-      font-weight: bold;
-      text-decoration: none;
-      transition: background 0.3s ease;
-    }
-    .cv-box:hover {
-      background-color: #000000;
-    }
-
-    /* Category styling */
-    .category {
-      margin-bottom: 30px;
-    }
-    .category h3 {
-      margin-bottom: 10px;
     }
   </style>
 </head>
 <body>
-  <!-- Background -->
   <div class="background-text"></div>
-  <!-- Header -->
   <div class="header">Joel Cordon</div>
   <div class="subheader">Reading List</div>
-  
-  <!-- Main Content -->
   <div class="content">
-    <section class="category">
-      <h3>Books</h3>
-      <ol>
-        <li>Title 1 (Coming Soon)</li>
-        <li>Title 2 (Coming Soon)</li>
-        <li>Title 3 (Coming Soon)</li>
-      </ol>
-    </section>
-    <section class="category">
-      <h3>Articles</h3>
-      <ol>
-        <li>Title 1 (Coming Soon)</li>
-        <li>Title 2 (Coming Soon)</li>
-        <li>Title 3 (Coming Soon)</li>
-      </ol>
-    </section>
-    <section class="category">
-      <h3>Papers</h3>
-      <ol>
-        <li>Title 1 (Coming Soon)</li>
-        <li>Title 2 (Coming Soon)</li>
-        <li>Title 3 (Coming Soon)</li>
-      </ol>
-    </section>
+    <h2>Reading List</h2>
+    <ol>
+      <li>Book Title 1 (Coming Soon)</li>
+      <li>Book Title 2 (Coming Soon)</li>
+      <li>Article Title 1 (Coming Soon)</li>
+      <li>Article Title 2 (Coming Soon)</li>
+    </ol>
+    <a href="index.html" class="return-home">Return to Homepage</a>
   </div>
-  
-  <!-- Social Links -->
-  <div class="social-links">
-    <a href="#">GitHub</a>
-    <a href="#">Medium</a>
-    <a href="#">LinkedIn</a>
-    <a href="#">Instagram</a>
-    <a href="#">X (Twitter)</a>
-    <a href="#">WhatsApp</a>
-    <a href="#">Telegram</a>
-    <a href="#">YouTube</a>
-    <a href="#">ResearchGate</a>
-    <a href="#">Stack Overflow</a>
-  </div>
-  
-  <!-- Hire Me Section -->
-  <div class="hire-me">
-    <a href="#" class="hire-button">Hire Me: Writing Opportunities</a>
-  </div>
-  <!-- CV Box -->
-  <a href="#" class="cv-box">View My CV</a>
 </body>
 </html>
-
 
