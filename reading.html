@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +16,7 @@
       position: relative;
       overflow-x: hidden;
     }
-    /* Background motif */
+    /* Background Motif */
     .background-text {
       position: fixed;
       top: 0;
@@ -30,9 +28,8 @@
       color: #0f172a;
       z-index: -1;
       display: flex;
-      flex-wrap: wrap;
-      align-content: left;
-      justify-content: left;
+      align-items: flex-start;
+      justify-content: center;
       pointer-events: none;
     }
     .background-text::before {
@@ -47,12 +44,11 @@
       white-space: pre-wrap;
       line-height: 2;
     }
-    /* Header styles */
+    /* Header Styling */
     .header {
       font-size: 1.8rem;
       font-weight: 900;
-      margin-top: 20px;
-      margin-bottom: 5px;
+      margin: 20px 0 5px 0;
       background: linear-gradient(to right, #0f172a, #1e293b);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -62,37 +58,43 @@
       color: #1e293b;
       margin-bottom: 20px;
     }
-    /* Content container */
+    /* Content Container */
     .content {
       max-width: 800px;
       margin: 20px auto;
       padding: 20px;
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255,255,255,0.9);
       border-radius: 8px;
-      text-align: left;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
     .content h2 {
       color: #0f172a;
-      margin-top: 0;
+      margin-bottom: 20px;
     }
     .content ol {
-      margin-left: 20px;
+      margin: 0 auto;
+      padding-left: 20px;
+      text-align: left;
     }
-    /* Return link */
+    .content li {
+      margin-bottom: 10px;
+    }
+    /* Return to Homepage Button (Inverted style) */
     .return-home {
-      margin-top: 20px;
       display: inline-block;
-      font-size: 0.9rem;
-      color: #1e293b;
+      margin-top: 20px;
+      padding: 6px 12px;
+      background-color: #000000;
+      color: #E8E8E8;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: bold;
       text-decoration: none;
-      border: 1px solid #1e293b;
-      padding: 4px 8px;
-      border-radius: 4px;
-      transition: background 0.3s ease, color 0.3s ease;
+      transition: background 0.3s ease;
     }
     .return-home:hover {
-      background-color: #1e293b;
-      color: #E8E8E8;
+      background-color: #333333;
     }
   </style>
 </head>
@@ -112,4 +114,5 @@
   </div>
 </body>
 </html>
+
 
