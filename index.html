@@ -5,220 +5,204 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.5">
   <title>Joel Cordon - Portfolio</title>
   <style>
-    /* Global Styles: Set font to Times New Roman */
     body {
-      font-family: "Times New Roman", serif;
-      background-color: #E8E8E8;
-      color: #E8E8E8;
-      text-align: center;
-      margin: 0;
-      padding: 0;
-      position: relative;
-      overflow-x: hidden;
-    }
-
-    /* Background Python Code - FULL COVERAGE */
-    .background-text {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      font-size: 60px;
-      opacity: 1.0;
-      font-weight: bold;
-      color: #0f172a;
-      z-index: -1;
-      display: flex;
-      flex-wrap: wrap;
-      align-content: left;
-      justify-content: left;
-      pointer-events: none;
-    }
+  font-family: "Helvetica Neue", sans-serif;
+  background-color: #f4f4f7;
+  color: #1a1a1a;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  overflow-x: hidden;
+}
     .background-text::before {
-      content: ">>> exploring.start() import AI def research(): return ideas >>> exploring.start() import AI def research(): return ideas >>> exploring.start() import AI def research(): return ideas >>> exploring.start() import AI def research(): return ideas ";
+      content: ">>> exploring.start() import AI def research(): return ideas >>>";
       position: absolute;
       top: 0;
       left: 0;
       width: 300%;
       height: 300%;
       font-size: 30px;
-      opacity: 0.06;
+      opacity: 0.02;
       white-space: pre-wrap;
       line-height: 2;
+      color: #c0c0c0;
     }
-
-    /* Header Styling */
     .header {
-      font-size: 1.8rem;
-      font-weight: 900;
-      margin-bottom: 5px;
-      background: linear-gradient(to right, #0f172a, #1e293b);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+  font-family: "Times New Roman", serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #000000;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
     .subheader {
-      font-size: 0.9rem;
-      color: #1e293b;
+      font-size: 1rem;
+      color: #4b5563;
       margin-bottom: 40px;
     }
-
-    /* Folder Layout */
-    .folder-container { display: flex; flex-direction: row; align-items: center; justify-content: center; /* centers items horizontally */ gap: 30px; margin-top: -10px; }
-
-    /* Folder Styling – scaled by 0.5 with futuristic silver look */
+    .folder-container {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
     .folder {
       position: relative;
-      width: calc(180px * 0.5); /* 90px */
-      height: calc(110px * 0.5); /* 55px */
-      background: linear-gradient(145deg, #C0C0C0, #E0E0E0);
-      border-radius: calc(10px * 0.5); /* 5px */
-      box-shadow: calc(3px * 0.5) calc(3px * 0.5) calc(8px * 0.5) rgba(0, 0, 0, 0.2);
+      width: 90px;
+      height: 55px;
+      background: linear-gradient(145deg, #ffffff, #d1d1d1);
+      border-radius: 6px;
+      box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: calc(0.9rem * 0.5); /* 0.45rem */
+      font-size: 0.6rem;
       font-weight: bold;
       text-transform: uppercase;
       color: #1e293b;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     .folder::before {
       content: attr(data-title);
       position: absolute;
-      top: calc(-16px * 0.5); /* -8px */
-      left: calc(10px * 0.5); /* 5px */
+      top: -10px;
+      left: 5px;
       width: 50%;
-      height: calc(18px * 0.5); /* 9px */
-      background: linear-gradient(145deg, #A9A9A9, #C0C0C0);
-      border-radius: calc(5px * 0.5) calc(5px * 0.5) 0 0; /* 2.5px 2.5px 0 0 */
+      height: 10px;
+      background: linear-gradient(145deg, #d9d9d9, #f0f0f0);
+      border-radius: 4px 4px 0 0;
+      font-size: 0.5rem;
+      color: #000;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: calc(0.8rem * 0.5); /* 0.4rem */
-      font-weight: bold;
-      color: #000000;
     }
-    .folder:hover {
-      transform: scale(1.05);
-      box-shadow: calc(5px * 0.5) calc(5px * 0.5) calc(15px * 0.5) rgba(0, 0, 0, 0.3);
-    }
-
-    /* Social Links – Smaller buttons */
     .social-links {
       margin-top: 30px;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 8px;
-      max-width: 550px;
-      margin-left: auto;
-      margin-right: auto;
+      gap: 10px;
     }
     .social-links a {
-      display: inline-block;
-      margin: 4px;
-      padding: 4px 6px;
-      background-color: #000000;
-      color: #E8E8E8;
-      text-decoration: none;
-      border-radius: 5px;
-      transition: background 0.3s ease;
-      font-size: 10px;
-      width: 80px;
-      text-align: center;
-    }
+  background: #e0e0e0;
+  color: #1e293b;
+  font-size: 0.75rem;
+  padding: 5px 10px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
     .social-links a:hover {
-      background-color: #000000;
+      background-color: #1e293b;
     }
-
-    /* Hire Me and CV Buttons – Smaller buttons for consistency */
     .hire-me {
       margin-top: 40px;
     }
     .hire-button {
-      display: inline-block;
-      font-size: 0.8rem;
-      font-weight: bold;
-      color: #000000;
-      border: 2px solid #000000;
-      padding: 6px 12px;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: background 0.3s ease, color 0.3s ease;
-    }
+  background: #e0e0e0;
+  color: #1e293b;
+  font-size: 0.75rem;
+  padding: 5px 10px;
+  border-radius: 4px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.3s ease;
+}
     .hire-button:hover {
-      background-color: #000000;
-      color: #E8E8E8;
+      background-color: #0f172a;
+      color: #ffffff;
     }
     .cv-box {
-      margin-top: 15px;
-      padding: 6px 12px;
-      background-color: #000000;
-      color: #E8E8E8;
-      display: inline-block;
-      border-radius: 6px;
-      font-size: 0.8rem;
-      font-weight: bold;
-      text-decoration: none;
-      transition: background 0.3s ease;
+  background: #e0e0e0;
+  color: #1e293b;
+  font-size: 0.75rem;
+  padding: 5px 10px;
+  border-radius: 4px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.3s ease;
+}
+    .skills-grid {
+      margin-top: 50px;
+      padding: 20px;
+      background-color: #ffffff;
+      border-top: 2px solid #e5e7eb;
+      border-bottom: 2px solid #e5e7eb;
     }
-    .cv-box:hover {
-      background-color: #000000;
+    .skills-grid h2 {
+      color: #0f172a;
+      font-size: 1.2rem;
     }
-
-    /* Footer */
-    .footer {
-      margin-top: 30px;
-      font-size: 0.9rem;
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .skills-list span {
+      background: #e0e0e0;
       color: #1e293b;
+      font-size: 0.75rem;
+      padding: 5px 10px;
+      border-radius: 4px;
     }
   </style>
 </head>
 <body>
-  <!-- Python Code Background -->
-  <div class="background-text"></div>
-
-  <!-- Header -->
   <div class="header">Joel Cordon</div>
-  <div class="subheader"></div>
-
-  <!-- Portfolio Sections (Vertical Folders) -->
-<div class="folder-container">
-  <a href="projects.html" style="text-decoration: none;">
-    <div class="folder" data-title="Projects"></div>
-  </a>
-  <a href="essays.html" style="text-decoration: none;">
-    <div class="folder" data-title="Essays"></div>
-  </a>
-  <a href="reading.html" style="text-decoration: none;">
-    <div class="folder" data-title="Reading"></div>
-  </a>
-  <div class="folder" data-title="ML Primer" style="display: none;"></div>
-</div>
-
-
-
-  <!-- Social Links -->
+  
+  <div class="folder-container">
+    <a href="projects.html"><div class="folder" data-title="Projects"></div></a>
+    <a href="essays.html"><div class="folder" data-title="Essays"></div></a>
+    <a href="reading.html"><div class="folder" data-title="Reading"></div></a>
+  </div>
   <div class="social-links">
     <a href="#">GitHub</a>
     <a href="#">Medium</a>
     <a href="#">LinkedIn</a>
-    <a href="#">Instagram</a>
-    <a href="#">X (Twitter)</a>
-    <a href="#">WhatsApp</a>
-    <a href="#">Telegram</a>
-    <a href="#">YouTube</a>
-    <a href="#">ResearchGate</a>
-    <a href="#">Stack Overflow</a>
+    <a href="#">HuggingFace</a>
+    <a href="#">Substack</a>
   </div>
-
-  <!-- Hire Me Section -->
-  <div class="hire-me">
-    <a href="#" class="hire-button">Hire Me: Writing Opportunities</a>
-  </div>
-
-  <!-- CV Box -->
+  <div class="hire-me" style="margin-top: 40px; display: flex; justify-content: center; gap: 10px;">
+  <a href="#" class="hire-button">Contact Me</a>
+  <a href="#" class="hire-button">Hire Me</a>
   <a href="#" class="cv-box">View My CV</a>
+</div>
+  <div class="skills-grid">
+  <h2>Machine Learning & Data Skills</h2>
+  <div class="skills-list">
+    <span>Python</span>
+    <span>scikit-learn</span>
+    <span>NumPy</span>
+    <span>pandas</span>
+    <span>matplotlib</span>
+    <span>Jupyter Notebooks</span>
+    <span>Logistic Regression</span>
+    <span>Decision Trees</span>
+    <span>K-Means Clustering</span>
+    <span>Support Vector Machines</span>
+    <span>Dimensionality Reduction (PCA)</span>
+    <span>EDA</span>
+    <span>Cross-validation</span>
+    <span>Whisper AI</span>
+    <span>LLaMA</span>
+    <span>LangChain</span>
+    <span>Vector Databases</span>
+    <span>Train/Test Split</span>
+    <span>Feature Engineering</span>
+    <span>One-Hot Encoding</span>
+    <span>Label Encoding</span>
+    <span>Model Evaluation Metrics (Accuracy, Precision, Recall, F1)</span>
+    <span>Confusion Matrix</span>
+    <span>Bias-Variance Tradeoff</span>
+    <span>Hyperparameter Tuning</span>
+    <span>Pipeline Building</span>
+    <span>Data Normalization/Standardization</span>
+</div>
+</div>
+  </div>
+</body>
+</html>
 
 
