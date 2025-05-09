@@ -3,126 +3,102 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.5">
-  <title>Joel Cordon - Reading & Reviews</title>
+  <title>Joel Cordon - Reading</title>
   <style>
     body {
-      font-family: "Times New Roman", serif;
-      background-color: #0f172a;
-      color: #e2e8f0;
+      font-family: Georgia, serif;
+      background-color: #f4f4f7;
+      color: #1a1a1a;
       text-align: center;
       margin: 0;
       padding: 0;
       overflow-x: hidden;
     }
-    .background-text {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      font-size: 60px;
-      font-weight: bold;
-      color: #1e293b;
-      z-index: -1;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      pointer-events: none;
-    }
     .background-text::before {
-      content: ">>> reading.import('AGI')\nresearch_loop.start() \nthought.reflect() ";
+      content: ">>> reading.start() import AGI def reflect(): return insight >>>";
       position: absolute;
       top: 0;
       left: 0;
       width: 300%;
       height: 300%;
       font-size: 30px;
-      opacity: 0.06;
+      opacity: 0.02;
       white-space: pre-wrap;
       line-height: 2;
-    }
-    .header {
-      font-size: 2rem;
-      font-weight: 900;
-      margin: 20px 0 5px 0;
-      background: linear-gradient(to right, #60a5fa, #38bdf8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .subheader {
-      font-size: 1rem;
-      color: #e2e8f0;
-      margin-bottom: 20px;
+      color: #c0c0c0;
     }
     .content {
       max-width: 900px;
       margin: 0 auto;
-      padding: 20px;
-      background: rgba(30,41,59,0.95);
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      padding: 40px 20px;
+      background: #ffffff;
+      border-top: 2px solid #e5e7eb;
+      border-bottom: 2px solid #e5e7eb;
     }
     .content h2 {
-      color: #93c5fd;
-      margin-bottom: 15px;
+      color: #0f172a;
+      font-size: 1.5rem;
+      margin-bottom: 25px;
+      font-style: italic;
     }
     .content ol {
       margin: 0 auto;
-      padding-left: 20px;
+      padding-left: 40px;
       text-align: left;
     }
     .content li {
-      margin-bottom: 10px;
+      margin-bottom: 20px;
+      font-size: 1rem;
     }
-    .section {
-      margin-top: 40px;
+    .review-link {
+      margin-left: 10px;
+      font-size: 0.9rem;
     }
     .pdf-embed {
       width: 100%;
       height: 600px;
-      margin-top: 30px;
-      border: 1px solid #475569;
+      margin-top: 40px;
+      border: 1px solid #e5e7eb;
       border-radius: 6px;
     }
     .return-home {
       display: inline-block;
-      margin-top: 20px;
+      margin-top: 30px;
       padding: 6px 12px;
-      background-color: #e2e8f0;
-      color: #0f172a;
-      border-radius: 6px;
-      font-size: 0.8rem;
+      background-color: #e0e0e0;
+      color: #1e293b;
+      border-radius: 4px;
+      font-size: 0.85rem;
       font-weight: bold;
       text-decoration: none;
       transition: background 0.3s ease;
     }
     .return-home:hover {
-      background-color: #cbd5e1;
+      background-color: #1e293b;
+      color: #ffffff;
     }
   </style>
 </head>
 <body>
   <div class="background-text"></div>
-  <div class="header">Joel Cordon</div>
-  <div class="subheader">Reading Log + Running Reviews</div>
   <div class="content">
-    <h2>Currently Reading</h2>
+    <h2>Reading Bibliography</h2>
     <ol>
-      <li><strong>All You Need Is Attention</strong> – Vaswani et al. (Transformer paper)</li>
-      <li><strong>A Hands-On Introduction to Machine Learning</strong> – Chirag Shah</li>
-      <li><strong>Introduction to Machine Learning</strong> – Ethem Alpaydin <a href="/mnt/data/pdfcoffee.com-machine-learning-the-new-ai-alpaydin-2016pdf.pdf" target="_blank" style="color:#60a5fa; text-decoration:underline;">[Full Text PDF]</a></li>
+      <li>Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, Ł., & Polosukhin, I. (2017). <em>Attention is all you need</em>. In Advances in neural information processing systems (pp. 5998–6008).
+        <a href="#" class="review-link">[Review]</a>
+      </li>
+      <li>Shah, C. (2023). <em>A Hands-On Introduction to Machine Learning</em>. Cambridge University Press.
+        <a href="#" class="review-link">[Review]</a>
+      </li>
+      <li>Alpaydin, E. (2016). <em>Introduction to Machine Learning</em> (3rd ed.). MIT Press.
+        <a href="assets/pdf/alpaydin-ml.pdf" target="_blank" class="review-link">[Full Text PDF]</a>
+        <a href="#" class="review-link">[Review]</a>
+      </li>
     </ol>
 
-
-
-
-
-    <iframe class="pdf-embed" src="/mnt/data/pdfcoffee.com-machine-learning-the-new-ai-alpaydin-2016pdf.pdf"></iframe>
+    <iframe class="pdf-embed" src="assets/pdf/alpaydin-ml.pdf"></iframe>
 
     <a href="index.html" class="return-home">Return to Homepage</a>
   </div>
 </body>
 </html>
-
-
-
