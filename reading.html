@@ -3,20 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.5">
-  <title>Joel Cordon - Reading List</title>
+  <title>Joel Cordon - Reading & Reviews</title>
   <style>
-    /* Global Styles */
     body {
       font-family: "Times New Roman", serif;
-      background-color: #E8E8E8;
-      color: #1e293b;
+      background-color: #0f172a;
+      color: #e2e8f0;
       text-align: center;
       margin: 0;
       padding: 0;
-      position: relative;
       overflow-x: hidden;
     }
-    /* Background Motif */
     .background-text {
       position: fixed;
       top: 0;
@@ -25,7 +22,7 @@
       height: 100vh;
       font-size: 60px;
       font-weight: bold;
-      color: #0f172a;
+      color: #1e293b;
       z-index: -1;
       display: flex;
       align-items: flex-start;
@@ -33,7 +30,7 @@
       pointer-events: none;
     }
     .background-text::before {
-      content: ">>> exploring.start() import AI def research(): return ideas ";
+      content: ">>> reading.import('AGI')\nresearch_loop.start() \nthought.reflect() ";
       position: absolute;
       top: 0;
       left: 0;
@@ -44,33 +41,30 @@
       white-space: pre-wrap;
       line-height: 2;
     }
-    /* Header Styling */
     .header {
-      font-size: 1.8rem;
+      font-size: 2rem;
       font-weight: 900;
       margin: 20px 0 5px 0;
-      background: linear-gradient(to right, #0f172a, #1e293b);
+      background: linear-gradient(to right, #60a5fa, #38bdf8);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
     .subheader {
       font-size: 1rem;
-      color: #1e293b;
+      color: #e2e8f0;
       margin-bottom: 20px;
     }
-    /* Content Container */
     .content {
-      max-width: 800px;
-      margin: 20px auto;
+      max-width: 900px;
+      margin: 0 auto;
       padding: 20px;
-      background: rgba(255,255,255,0.9);
+      background: rgba(30,41,59,0.95);
       border-radius: 8px;
-      text-align: center;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
     .content h2 {
-      color: #0f172a;
-      margin-bottom: 20px;
+      color: #93c5fd;
+      margin-bottom: 15px;
     }
     .content ol {
       margin: 0 auto;
@@ -80,13 +74,22 @@
     .content li {
       margin-bottom: 10px;
     }
-    /* Return to Homepage Button (Inverted style) */
+    .section {
+      margin-top: 40px;
+    }
+    .pdf-embed {
+      width: 100%;
+      height: 600px;
+      margin-top: 30px;
+      border: 1px solid #475569;
+      border-radius: 6px;
+    }
     .return-home {
       display: inline-block;
       margin-top: 20px;
       padding: 6px 12px;
-      background-color: #000000;
-      color: #E8E8E8;
+      background-color: #e2e8f0;
+      color: #0f172a;
       border-radius: 6px;
       font-size: 0.8rem;
       font-weight: bold;
@@ -94,25 +97,32 @@
       transition: background 0.3s ease;
     }
     .return-home:hover {
-      background-color: #333333;
+      background-color: #cbd5e1;
     }
   </style>
 </head>
 <body>
   <div class="background-text"></div>
   <div class="header">Joel Cordon</div>
-  <div class="subheader">Reading List</div>
+  <div class="subheader">Reading Log + Running Reviews</div>
   <div class="content">
-    <h2>Reading List</h2>
+    <h2>Currently Reading</h2>
     <ol>
-      <li>Book Title 1 (Coming Soon)</li>
-      <li>Book Title 2 (Coming Soon)</li>
-      <li>Article Title 1 (Coming Soon)</li>
-      <li>Article Title 2 (Coming Soon)</li>
+      <li><strong>All You Need Is Attention</strong> – Vaswani et al. (Transformer paper)</li>
+      <li><strong>A Hands-On Introduction to Machine Learning</strong> – Chirag Shah</li>
+      <li><strong>Introduction to Machine Learning</strong> – Ethem Alpaydin <a href="/mnt/data/pdfcoffee.com-machine-learning-the-new-ai-alpaydin-2016pdf.pdf" target="_blank" style="color:#60a5fa; text-decoration:underline;">[Full Text PDF]</a></li>
     </ol>
+
+
+
+
+
+    <iframe class="pdf-embed" src="/mnt/data/pdfcoffee.com-machine-learning-the-new-ai-alpaydin-2016pdf.pdf"></iframe>
+
     <a href="index.html" class="return-home">Return to Homepage</a>
   </div>
 </body>
 </html>
+
 
 
