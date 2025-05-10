@@ -4,147 +4,136 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Joel Cordon - Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@700&display=swap" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
     body {
       font-family: "Helvetica Neue", sans-serif;
       background-color: #f4f4f7;
-      color: #1a1a1a;
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
+      color: #000000;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      line-height: 1.6;
     }
     .header {
-      font-family: "Times New Roman", serif;
-      font-size: 2.5rem;
-      font-weight: bold;
+      font-family: 'EB Garamond', serif;
+      font-size: 2.75rem;
+      font-weight: 700;
       color: #000000;
-      margin: 40px 20px 20px;
       text-align: center;
+      margin: 40px 0 20px;
     }
     .folder-container {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 20px;
-      padding: 20px;
+      gap: 16px;
+      margin: 10px 0 20px;
     }
     .folder {
       position: relative;
       width: 90px;
-      height: 55px;
-      background: linear-gradient(145deg, #ffffff, #d1d1d1);
+      height: 58px;
+      background: linear-gradient(145deg, #f3e7d3, #e2d2b8);
       border-radius: 6px;
-      box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+      box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.15);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 0.6rem;
       font-weight: bold;
       text-transform: uppercase;
-      color: #1e293b;
+      color: #000000;
     }
     .folder::before {
       content: attr(data-title);
       position: absolute;
-      top: -10px;
+      top: -12px;
       left: 5px;
-      width: 50%;
-      height: 10px;
-      background: linear-gradient(145deg, #d9d9d9, #f0f0f0);
+      width: 60%;
+      height: 12px;
+      background: linear-gradient(145deg, #f9f3e5, #e8dbc3);
       border-radius: 4px 4px 0 0;
-      font-size: 0.5rem;
-      color: #000;
+      font-size: 0.45rem;
+      color: #000000;
       display: flex;
       align-items: center;
       justify-content: center;
     }
-    .social-links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      padding: 10px;
-    }
-    .social-links a {
-      background: #e0e0e0;
-      color: #1e293b;
-      font-size: 0.75rem;
-      padding: 5px 10px;
-      border-radius: 4px;
-      text-decoration: none;
-      transition: background 0.3s ease;
-    }
-    .social-links a:hover {
-      background-color: #1e293b;
-      color: #ffffff;
-    }
+    .social-links,
     .hire-me {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 10px;
-      margin: 30px 0;
-      padding: 0 20px;
+      padding: 10px 0;
     }
+    .social-links a,
     .hire-button,
     .cv-box {
       background: #e0e0e0;
-      color: #1e293b;
+      color: #000000;
       font-size: 0.75rem;
-      padding: 10px 15px;
+      padding: 6px 12px;
       border-radius: 4px;
       text-decoration: none;
-      display: inline-block;
       transition: background 0.3s ease;
     }
+    .social-links a:hover,
     .hire-button:hover,
     .cv-box:hover {
-      background-color: #0f172a;
+      background-color: #000000;
       color: #ffffff;
     }
     .skills-grid {
-      margin: 30px auto;
-      padding: 20px;
       background-color: #ffffff;
       border-top: 2px solid #e5e7eb;
       border-bottom: 2px solid #e5e7eb;
-      max-width: 95%;
+      padding: 20px 10px;
+      max-width: 900px;
+      margin: 20px auto;
     }
     .skills-grid h2 {
-      color: #0f172a;
+      color: #000000;
       font-size: 1.2rem;
       text-align: center;
+      margin-bottom: 10px;
     }
     .skills-list {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 10px;
-      margin-top: 10px;
+      gap: 8px;
     }
     .skills-list span {
       background: #e0e0e0;
-      color: #1e293b;
-      font-size: 0.75rem;
-      padding: 5px 10px;
+      color: #000000;
+      font-size: 0.7rem;
+      padding: 4px 8px;
       border-radius: 4px;
+    }
+    footer {
+      text-align: center;
+      padding: 15px;
+      font-size: 0.75rem;
+      color: #000000;
+      margin-top: auto;
     }
     @media (max-width: 600px) {
       .header {
         font-size: 2rem;
       }
       .folder {
-        width: 70px;
-        height: 45px;
+        width: 75px;
+        height: 50px;
       }
       .folder::before {
         font-size: 0.4rem;
-      }
-      .skills-grid h2 {
-        font-size: 1rem;
       }
     }
   </style>
@@ -200,5 +189,18 @@
       <span>Data Normalization/Standardization</span>
     </div>
   </div>
+
+  <footer><div class="skills-grid">
+    <h2>JoelGPT</h2>
+    <iframe 
+      src="https://huggingface.co/spaces/yuntian-deng/ChatGPT" 
+      width="100%" 
+      height="500" 
+      frameborder="0" 
+      style="border-radius: 8px; overflow: hidden;">
+    </iframe>
+  </div><div style="text-align: center; font-size: 0.75rem; color: #000000; margin-top: 20px;">&copy; 2025 Joel Cordon. All rights reserved.</div>
+</footer>
 </body>
 </html>
+
