@@ -1,0 +1,26 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "Home Page"
+        name: "home"
+        file: "index.html"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "cv"
+    label: "CV"
+    files:
+      - label: "CV File"
+        name: "cv"
+        file: "assets/portfolio/jc_cv.pdf"
+        fields:
+          - { label: "Upload CV", name: "file", widget: "file" }
