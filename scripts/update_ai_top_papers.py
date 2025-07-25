@@ -4,7 +4,7 @@ update_ai_top_papers.py
 =======================
 
 This script retrieves recent research announcements and blog posts from several
-prominent AI‐focused sources and assembles a JSON feed containing the top
+prominent AI-focused sources and assembles a JSON feed containing the top
 items. The current sources include the Hugging Face blog, the OpenAI blog,
 the MIT News artificial intelligence channel, and the arXiv categories for
 Artificial Intelligence (cs.AI) and Machine Learning (cs.LG). The feed is
@@ -16,24 +16,19 @@ Each entry in the resulting feed contains the following fields:
 * ``title`` – The title of the post or paper.
 * ``source`` – A short identifier describing where the entry originated.
 * ``url`` – A direct link to the item.
-* ``published`` – The publication date formatted in ISO‑8601 (or ``null`` if
+* ``published`` – The publication date formatted in ISO-8601 (or ``null`` if
   unavailable).
 * ``summary`` – A brief summary extracted from the description field in the
   feed. The summary is truncated to the first two sentences to remain
   concise.
 
-To execute this script you need an internet connection. No third‑party
-packages are required; everything is implemented with Python’s standard
-library. The script writes the resulting feed to ``ai_top_papers.json`` in
-the same directory. When deploying on a server or in a CI pipeline you can
-schedule it to run once per day, ensuring that the feed stays fresh.
+To execute this script you need an internet connection. No third-party
+packages are required for the basic feed generation; everything is
+implemented with Python’s standard library. If you supply an OpenAI API key
+and e-mail configuration via environment variables, the script will also
+summarise each entry into an SEO-friendly article and send a daily digest to
+a list of subscribers.
 
-Usage::
-
-    python update_ai_top_papers.py
-
-Author: OpenAI ChatGPT
-Date: 2025‑07‑25
 """
 
 import json
@@ -47,7 +42,7 @@ import xml.etree.ElementTree as ET
 
 
 def parse_rss_feed(url: str, source: str) -> list[dict]:
-    """Fetch and parse an RSS feed.
+    """Fetch and parse an RSS or Atom feed.
 
     Args:
         url: URL of the RSS feed to parse.
@@ -55,8 +50,8 @@ def parse_rss_feed(url: str, source: str) -> list[dict]:
 
     Returns:
         A list of dictionaries representing feed items. Each dictionary has
-        ``title``, ``url``, ``published`` (a datetime object or ``None``) and
-        ``summary``.
+        ``title``, ``url``, ``published`` (a datetime object or ``None``)
+        and ``summary``.
 
     Raises:
         urllib.error.URLError: If there is an issue connecting to the feed.
@@ -88,11 +83,15 @@ def parse_rss_feed(url: str, source: str) -> list[dict]:
                 else:
                     link_href = link_node.get('href')
 
-            pub_date_node = (item.find('pubDate') or item.find('published') or
-                              item.find('{http://www.w3.org/2005/Atom}published') or
-                              item.find('updated'))
-            summary_node = (item.find('description') or item.find('summary') or
-                            item.find('{http://www.w3.org/2005/Atom}summary'))
+            pub_date_node = (
+                item.find('pubDate') or item.find('published') or
+                item.find('{http://www.w3.org/2005/Atom}published') or
+                item.find('updated')
+            )
+            summary_node = (
+                item.find('description') or item.find('summary') or
+                item.find('{http://www.w3.org/2005/Atom}summary')
+            )
             # Extract text values
             title = html.unescape(title_node.text.strip()) if title_node is not None and title_node.text else ''
             url_link = link_href.strip() if link_href else ''
@@ -176,8 +175,94 @@ def build_feed() -> list[dict]:
     return top_items
 
 
+def generate_seo_article(title: str, summary: str, url: str) -> str:
+    """
+    Generate an SEO-friendly article using OpenAI or fall back to the original summary.
+
+    This function uses the OpenAI API if an API key is available via the
+    ``OPENAI_API_KEY`` environment variable. It composes a prompt that
+    instructs the model to produce a concise, keyword-rich article based on
+    the provided title and summary. If the API is unavailable or an error
+    occurs, it returns a simple fallback message with a link to the source.
+    """
+    import os
+    try:
+        import openai  # type: ignore
+    except Exception:
+        openai = None  # type: ignore
+
+    if openai is None or not os.getenv('OPENAI_API_KEY'):
+        return f"{title}\n\n{summary}\n\nRead more: {url}"
+
+    openai.api_key = os.getenv('OPENAI_API_KEY')
+    prompt = (
+        "You are a helpful assistant who writes concise, SEO-friendly news articles. "
+        "Use the following information about an AI news item to craft a 150–200-word "
+        "article that highlights the significance of the work and includes relevant keywords "
+        "like AI, machine learning and deep learning. Include the title at the beginning "
+        "as a heading and end with a call to action linking to the original source.\n\n"
+        f"Title: {title}\nSummary: {summary}\nURL: {url}\n"
+    )
+    try:
+        response = openai.ChatCompletion.create(
+            model='gpt-3.5-turbo',
+            messages=[{'role': 'user', 'content': prompt}],
+            max_tokens=350,
+            temperature=0.7,
+        )
+        return response.choices[0].message['content'].strip()
+    except Exception as exc:
+        return f"{title}\n\n{summary}\n\nRead more: {url}\n\n(Note: AI summary unavailable: {exc})"
+
+
+def send_email(subject: str, body: str) -> None:
+    """
+    Send the assembled AI summaries via e-mail to subscribers.
+
+    This function relies on SMTP credentials and a comma-separated list of
+    subscriber addresses provided via the ``EMAIL_HOST``, ``EMAIL_PORT``,
+    ``EMAIL_USERNAME``, ``EMAIL_PASSWORD``, ``EMAIL_SENDER`` and
+    ``SUBSCRIBERS`` environment variables. If any of these values are
+    missing, the e-mail sending step is skipped.
+    """
+    import os
+    import sys
+    import smtplib
+    from email.mime.text import MIMEText
+    from email.mime.multipart import MIMEMultipart
+
+    host = os.getenv('EMAIL_HOST')
+    port = int(os.getenv('EMAIL_PORT', '465'))
+    username = os.getenv('EMAIL_USERNAME')
+    password = os.getenv('EMAIL_PASSWORD')
+    sender = os.getenv('EMAIL_SENDER', username)
+    subscribers = os.getenv('SUBSCRIBERS')
+
+    if not (host and username and password and subscribers):
+        print("Email configuration or subscriber list missing; skipping email.", file=sys.stderr)
+        return
+
+    recipients = [addr.strip() for addr in subscribers.split(',') if addr.strip()]
+    if not recipients:
+        print("No valid subscribers found; skipping email.", file=sys.stderr)
+        return
+
+    msg = MIMEMultipart()
+    msg['From'] = sender
+    msg['To'] = ', '.join(recipients)
+    msg['Subject'] = subject
+    msg.attach(MIMEText(body, 'plain', 'utf-8'))
+
+    try:
+        with smtplib.SMTP_SSL(host, port) as server:
+            server.login(username, password)
+            server.sendmail(sender, recipients, msg.as_string())
+    except Exception as exc:
+        print(f"Failed to send email: {exc}", file=sys.stderr)
+
+
 def main(path: str = 'ai_top_papers.json') -> None:
-    """Main entry point: build the feed and write it to the given JSON file."""
+    """Main entry point: build the feed, write JSON and send summaries."""
     top_feed = build_feed()
     try:
         with open(path, 'w', encoding='utf-8') as fh:
@@ -185,6 +270,13 @@ def main(path: str = 'ai_top_papers.json') -> None:
     except OSError as exc:
         print(f"Error writing JSON feed to {path}: {exc}", file=sys.stderr)
         sys.exit(1)
+
+    # Generate SEO articles and email them
+    articles = [generate_seo_article(item['title'], item['summary'], item['url']) for item in top_feed]
+    if articles:
+        subject = "Daily AI News Digest"
+        body = "\n\n".join(articles)
+        send_email(subject, body)
 
 
 if __name__ == '__main__':
