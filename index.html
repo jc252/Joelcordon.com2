@@ -190,7 +190,47 @@
     </div>
   </div>
 
-  </div><div style="text-align: center; font-size: 0.75rem; color: #000000; margin-top: 20px;">&copy; 2025 Joel Cordon. All rights reserved.</div>
+  </div>
+    <!-- Start AI Top Papers Ticker -->
+    <div id="ai-papers-section" style="max-width: 900px; margin: 20px auto;">
+      <h2 style="text-align: center; margin-bottom: 10px;">Daily Top AI Papers</h2>
+      <div id="ai-papers-ticker" style="overflow-x: auto; white-space: nowrap;">
+        <ul style="list-style: none; padding-left: 0; margin: 0; display: flex; gap: 20px;"></ul>
+      </div>
+    </div>
+    <!-- Email Subscription -->
+    <div id="subscription" style="text-align: center; margin: 20px;">
+      <p style="margin-bottom: 8px;">Subscribe to receive the daily AI news digest via e‑mail:</p>
+      <form id="subscribe-form" onsubmit="window.location.href='mailto:subscribe@joelcordon.com?subject=Subscribe%20to%20Daily%20AI%20Digest&body=Please%20add%20me%20to%20your%20daily%20AI%20digest.%20My%20email%20is%20'+encodeURIComponent(document.getElementById('subscriber-email').value); return false;">
+        <input type="email" id="subscriber-email" placeholder="Enter your e‑mail" required style="padding: 6px 10px; border-radius: 4px; border: 1px solid #ccc; margin-right: 6px;">
+        <button type="submit" style="padding: 6px 12px; border-radius: 4px; background-color:#e0e0e0; color:#000;">Subscribe</button>
+      </form>
+      <small style="display:block; margin-top: 4px; font-size: 0.6rem;">This will open your email client to send the subscription request.</small>
+    </div>
+    <script>
+      async function loadAiPapers() {
+        try {
+          const response = await fetch('ai_top_papers.json');
+          const data = await response.json();
+          const ul = document.querySelector('#ai-papers-ticker ul');
+          ul.innerHTML = '';
+          data.forEach(item => {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.href = item.url;
+            a.target = '_blank';
+            a.textContent = item.title;
+            li.appendChild(a);
+            ul.appendChild(li);
+          });
+        } catch (err) {
+          console.error('Failed to load AI papers:', err);
+        }
+      }
+      loadAiPapers();
+    </script>
+    <!-- End AI Top Papers Ticker -->
+<div style="text-align: center; font-size: 0.75rem; color: #000000; margin-top: 20px;">&copy; 2025 Joel Cordon. All rights reserved.</div>
 </footer>
 </body>
 </html>
