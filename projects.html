@@ -1,114 +1,65 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.5">
-  <title>Projects</title>
-  <style>
-    /* Global Styles */
-    body {
-      font-family: "Times New Roman", serif;
-      background-color: #E8E8E8;
-      color: #1e293b;
-      text-align: center;
-      margin: 0;
-      padding: 0;
-      position: relative;
-      overflow-x: hidden;
-    }
-    /* Background Motif */
-    .background-text {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      font-size: 60px;
-      font-weight: bold;
-      color: #0f172a;
-      z-index: -1;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      pointer-events: none;
-    }
-    .background-text::before {
-      content: ">>> exploring.start() import AI def research(): return ideas ";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 300%;
-      height: 300%;
-      font-size: 30px;
-      opacity: 0.06;
-      white-space: pre-wrap;
-      line-height: 2;
-    }
-    /* Header Styling */
-    .header {
-      font-size: 1.8rem;
-      font-weight: 900;
-      margin: 20px 0 5px 0;
-      background: linear-gradient(to right, #0f172a, #1e293b);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .subheader {
-      font-size: 1rem;
-      color: #1e293b;
-      margin-bottom: 20px;
-    }
-    /* Content Container */
-    .content {
-      max-width: 800px;
-      margin: 20px auto;
-      padding: 20px;
-      background: rgba(255,255,255,0.9);
-      border-radius: 8px;
-      text-align: center;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-    .content h2 {
-      color: #0f172a;
-      margin-bottom: 20px;
-    }
-    .content ol {
-      margin: 0 auto;
-      padding-left: 20px;
-      text-align: left;
-    }
-    .content li {
-      margin-bottom: 10px;
-    }
-    /* Return to Homepage Button (Inverted style) */
-    .return-home {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 6px 12px;
-      background-color: #000000;
-      color: #E8E8E8;
-      border-radius: 6px;
-      font-size: 0.6rem;
-      font-weight: bold;
-      text-decoration: none;
-      transition: background 0.3s ease;
-    }
-    .return-home:hover {
-      background-color: #333333;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.5">
+<title>Projects</title>
+<style>
+  body {
+    font-family: "Times New Roman", serif;
+    background-color: #E8E8E8;
+    color: #1e293b;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+  .content {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .content h2 {
+    color: #0f172a;
+    margin-bottom: 20px;
+  }
+  .content ol {
+    text-align: left;
+    padding-left: 20px;
+  }
+  .content li {
+    margin-bottom: 10px;
+  }
+  .return-home {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 6px 12px;
+    background-color: #000000;
+    color: #E8E8E8;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background 0.3s ease;
+  }
+  .return-home:hover {
+    background-color: #333333;
+  }
+</style>
 </head>
 <body>
-  <div class="background-text"></div>
-  <div class="content">
-    <h2>Projects</h2>
-    <ol>
-
-      
-    </ol>
-    <a href="index.html" class="return-home"><</a>
-  </div>
+<div class="content">
+  <h2>Projects</h2>
+  <ol>
+    <li>
+      <strong>XRP Price Prediction (ML Project)</strong><br>
+      This project analyzes minute‑level XRP cryptocurrency data to build a machine learning model for predicting future prices. After exploratory data analysis and feature engineering, a Decision Tree regressor was trained and combined with K‑Means clustering to model market regimes. It includes a live prediction script that fetches real‑time data from the Binance API and makes forecasts.<br>
+      <a href="xrp_price_prediction.py">View code</a>
+    </li>
+  </ol>
+  <a class="return-home" href="index.html">Return Home</a>
+</div>
 </body>
 </html>
-
