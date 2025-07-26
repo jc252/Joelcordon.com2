@@ -110,12 +110,28 @@
       justify-content: center;
       gap: 8px;
     }
+    /* Each skill becomes clickable */
     .skills-list span {
       background: #e0e0e0;
       color: #000000;
       font-size: 0.7rem;
       padding: 4px 8px;
       border-radius: 4px;
+      cursor: pointer;
+    }
+    .skills-list span:hover {
+      background-color: #d5d5d5;
+    }
+    #skill-description {
+      max-width: 900px;
+      margin: 15px auto;
+      padding: 10px;
+      background: #fff;
+      border-radius: 4px;
+      border: 1px solid #e5e7eb;
+      font-size: 0.8rem;
+      color: #000;
+      line-height: 1.4;
     }
     footer {
       text-align: center;
@@ -140,28 +156,21 @@
 </head>
 <body>
   <div class="header">Joel Cordon</div>
-
   <div class="folder-container">
     <a href="projects.html"><div class="folder" data-title="Projects"></div></a>
     <a href="essays.html"><div class="folder" data-title="Essays"></div></a>
-   <!-- <a href="reading.html"><div class="folder" data-title="Reading"></div></a> -->
   </div>
-
- <div class="social-links">
-  <a href="https://github.com/jc252/Joelcordon.com2" target="_blank">GitHub</a>
-  <a href="https://www.kaggle.com/joelcordon" target="_blank">Kaggle</a>
-  <a href="https://huggingface.co/Jedordon" target="_blank">Hugging Face</a>
-  <a href="https://joelcordon.substack.com" target="_blank">Substack</a>
- </div>
-
-
+  <div class="social-links">
+    <a href="https://github.com/jc252/Joelcordon.com2" target="_blank">GitHub</a>
+    <a href="https://www.kaggle.com/joelcordon" target="_blank">Kaggle</a>
+    <a href="https://huggingface.co/Jedordon" target="_blank">Hugging Face</a>
+    <a href="https://joelcordon.substack.com" target="_blank">Substack</a>
+  </div>
   <div class="hire-me">
-
     <a href="Assets/jc_cv.pdf" class="cv-box" target="_blank">View My CV</a>
   </div>
-
   <div class="skills-grid">
-    <h2>Machine Learning & Data Skills</h2>
+    <h2>Machine Learning &amp; Data Skills</h2>
     <div class="skills-list">
       <span>Python</span>
       <span>scikit-learn</span>
@@ -187,10 +196,60 @@
       <span>Hyperparameter Tuning</span>
       <span>Pipeline Building</span>
       <span>Data Normalization/Standardization</span>
+      <!-- New skills from Hugging Face Agents course -->
+      <span>Agent Architectures (ReAct)</span>
+      <span>Agent Memory &amp; Context Management</span>
+      <span>Tool Integration for Agents</span>
+      <span>Planning &amp; Reasoning</span>
+      <span>Reflection &amp; Self-Evaluation</span>
+      <span>Retrieval-Augmented Generation (RAG)</span>
     </div>
+    <!-- Description container -->
+    <div id="skill-description">Click a skill to see a brief description.</div>
   </div>
-
-  </div><div style="text-align: center; font-size: 0.75rem; color: #000000; margin-top: 20px;">&copy; 2025 Joel Cordon. All rights reserved.</div>
-</footer>
+  <div style="text-align: center; font-size: 0.75rem; color: #000000; margin-top: 20px;">&copy; 2025 Joel Cordon. All rights reserved.</div>
+  <script>
+    // Dictionary of skill descriptions. Each entry corresponds to the text of the skill span.
+    const descriptions = {
+      "Python": "Often called the *lingua franca* of data science, Python combines readability with a vast ecosystem of libraries and tools that make it ideal for machine learning and data analysis.",
+      "scikit-learn": "A go-to Python library for classical machine learning; it wraps a broad range of algorithms behind a consistent and easy-to-use interface.",
+      "NumPy": "NumPy underpins the Python scientific stack with fast, vectorised operations on large, multi-dimensional arrays, enabling efficient numerical computing.",
+      "pandas": "pandas turns messy data into actionable insights by providing intuitive DataFrame and Series structures for cleaning, transforming and analysing tabular data.",
+      "matplotlib": "matplotlib is the workhorse plotting library that lets you create anything from simple line plots to complex, publication-quality figures.",
+      "Jupyter Notebooks": "Jupyter Notebooks blend code, visualization and narrative text in a single document, making them perfect for exploration and reproducible reporting.",
+      "Logistic Regression": "A simple yet powerful classification algorithm that models the probability of discrete outcomes using a logistic function.",
+      "Decision Trees": "Decision trees split data into branches based on feature values, forming an easy-to-interpret model for classification and regression tasks.",
+      "K-Means Clustering": "An unsupervised algorithm that groups observations into K clusters by minimizing within-cluster variance.",
+      "Support Vector Machines": "Support Vector Machines draw the best possible boundary between classes by maximizing the margin between data points.",
+      "Dimensionality Reduction (PCA)": "Principal Component Analysis compresses high-dimensional data into a smaller number of uncorrelated components that retain most of the original variance.",
+      "EDA": "Exploratory Data Analysis is the detective work of data science—summarising distributions and relationships to formulate hypotheses.",
+      "Cross-validation": "Cross-validation estimates how well a model generalises by training and validating on different subsets of the data.",
+      "Vector Databases": "Vector databases store high-dimensional embeddings and enable efficient similarity search for tasks like nearest-neighbour retrieval.",
+      "Train/Test Split": "Partitioning your dataset into training and test sets guards against overfitting by keeping evaluation data separate from the data used to build the model.",
+      "Feature Engineering": "Crafting informative features from raw data often determines whether a model performs adequately or excels.",
+      "One-Hot Encoding": "One‑Hot Encoding represents categorical variables as sparse binary vectors, making them digestible to algorithms that expect numeric input.",
+      "Label Encoding": "Label encoding assigns numeric codes to categorical values—useful when the categories carry an order or the algorithm can handle ordinal relationships.",
+      "Model Evaluation Metrics (Accuracy, Precision, Recall, F1)": "Metrics such as accuracy, precision, recall and F1 score provide quantitative feedback on how well a classification model performs across different aspects.",
+      "Confusion Matrix": "A confusion matrix breaks down the counts of true and false positives and negatives, offering a detailed look at classifier performance.",
+      "Bias-Variance Tradeoff": "Choosing between simple and complex models requires balancing bias (underfitting) against variance (overfitting).",
+      "Hyperparameter Tuning": "Hyperparameter tuning is an art and science of selecting the best settings that govern how learning algorithms behave.",
+      "Pipeline Building": "Building pipelines strings data preprocessing and modeling steps together, ensuring reproducibility and preventing data leakage.",
+      "Data Normalization/Standardization": "Scaling features to a common range or distribution stabilises learning algorithms and accelerates training convergence.",
+      "Agent Architectures (ReAct)": "ReAct is a hybrid agent architecture that interleaves reasoning and action—deciding when to think and when to do.",
+      "Agent Memory & Context Management": "Agents maintain a memory of past interactions and context to inform current decisions, improving coherence and task efficiency.",
+      "Tool Integration for Agents": "Connecting agents to external tools—calculators, web search or APIs—expands their capabilities beyond pure text generation.",
+      "Planning & Reasoning": "Planning and reasoning enable agents to break down complex tasks into structured steps and carry them out sequentially.",
+      "Reflection & Self-Evaluation": "By reflecting on their own outputs, agents can detect errors, revise plans and improve performance over time.",
+      "Retrieval-Augmented Generation (RAG)": "RAG combines the strengths of retrieval and generation—fetching relevant documents and weaving their contents into coherent responses."
+    };
+    // Attach click handlers to each skill span
+    document.querySelectorAll('.skills-list span').forEach((span) => {
+      span.addEventListener('click', () => {
+        const key = span.textContent.trim();
+        const description = descriptions[key] || 'Description not available for this skill.';
+        document.getElementById('skill-description').textContent = description;
+      });
+    });
+  </script>
 </body>
 </html>
